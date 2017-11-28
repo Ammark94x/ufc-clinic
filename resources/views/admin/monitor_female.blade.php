@@ -10,7 +10,7 @@
 @endsection
 @section('content')
 <?php 
-  /*echo "<pre>";
+ /* echo "<pre>";
   var_dump($monitor_user);die;*/
   $gender=$user[0]->gender;
   $user_id=$user[0]->id;
@@ -78,6 +78,7 @@
                             <td style="font-weight: bold;">Total Inches</td>
                             <td>{{$last_visit->total_inches}} inches</td>
                           </tr>
+                          
                           <?php $count=0;?>
                           @foreach($product as $key =>$val)
                           <tr>
@@ -89,6 +90,16 @@
                           </tr>
                             <?php $count++;?>
                             @endforeach
+                          <tr>
+                            <td style="font-weight: bold;">Package</td>
+                            <td>
+                              @if(isset($last_visit->package))
+                                {{$last_visit->package}}
+                              @endif
+                            </td>
+                            <td></td>
+                            <td></td>
+                          </tr>
                           <tr>
                             <td style="font-weight: bold;">Full Payment</td>
                             <td>{{$last_visit->full_payment}}</td>
@@ -133,43 +144,54 @@
                           </div>   
                           <div class="col-md-2">
                             <label>Neck</label>
-                            <input name="neck" type="number" min="1" id="neck" type="text" class="form-control" required="">
+                            <input name="neck" type="number" min="1" id="neck" type="text" class="form-control" placeholder="inches" required="">
                           </div>
                           <div class="col-md-2">
                             <label>Chest</label>
-                            <input name="chest" type="number" min="1" id="chest" type="text" class="form-control" required="">
+                            <input name="chest" type="number" min="1" id="chest" type="text" class="form-control" placeholder="inches" required="">
                           </div>
                         </div>
                         <div class="row form-row">
                           <div class="col-md-2">
                             <label>Side Buns</label>
-                            <input name="side_buns" type="number" id="side_buns" min="1" type="text" class="form-control"  required="">
+                            <input name="side_buns" type="number" id="side_buns" min="1" type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-2">
                             <label>Waist</label>
-                            <input name="waist" type="number" id="waist" min="1" type="text" class="form-control"  required="">
+                            <input name="waist" type="number" id="waist" min="1" type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-2">
                             <label>Hips</label>
-                            <input name="hips"  id="hips" type="text" class="form-control"  required="">
+                            <input name="hips"  id="hips" type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-2">
                             <label>Theighs</label>
-                            <input name="thighs" type="number" id="thighs" min="1" type="text" class="form-control"  required="">
+                            <input name="thighs" type="number" id="thighs" min="1" type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-4" >
                               <label>Arms</label>
-                              <input name="arms" id="arms" type="number" class="form-control"  required="">
+                              <input name="arms" id="arms" type="number" class="form-control" placeholder="inches"  required="">
                             </div>
                             <div class="col-md-6" >
                               <label>Lower Waist</label>
-                              <input name="lower_waist" id="lower_waist" type="number" class="form-control"  required="">
+                              <input name="lower_waist" id="lower_waist" type="number" class="form-control" placeholder="inches"  required="">
                             </div>
                             <div class="col-md-4" >
                               <label>Total Inches</label>
-                              <input name="total_inches"  id="total_inches" type="number" class="form-control"  required="">
+                              <input name="total_inches"  id="total_inches" type="number" class="form-control" placeholder="inches"  required="">
                             </div>
                           </div>
+                          <div class="col-md-6">
+                              <label>Package</label>
+                              <select name="package" required="">
+                                <option value="0">Select package</option>
+                                <option value="BMR">BMR</option>
+                                <option value="15 days package">15 days package</option>
+                                <option value="Continue">Continue</option>
+                                <option value="Closed">Closed</option>
+                                
+                              </select> 
+                            </div>
                           {{-- hidden fields for the databale --}}
                           <input type="hidden" name="gender" value="{{$gender}}">
                           <input type="hidden" name="user_id" value="{{$user_id}}">
@@ -261,6 +283,7 @@
                         <th>Hips</th>
                         <th>Arms</th>
                         <th>Total Inches</th>
+                        <th>Package</th>
                         <th>Product (Quantity)</th>
                         <th>Full Payment</th>
                         <th>Payment Recieved</th>
@@ -269,7 +292,7 @@
                     </thead>
                     <tbody>
                       
-                      @foreach($monitor_user as $ey => $val)
+                      @foreach($monitor_user as $key => $val)
                       <tr class="odd gradeX">
                         <td>{{$val->dov}}</td>
                         <td>{{$val->neck}}</td>
@@ -280,6 +303,7 @@
                         <td>{{$val->hips}}</td>
                         <td class="center">{{$val->arms}}</td>
                         <td>{{$val->total_inches}}</td>
+                        <td class="center">{{$val->package}}</td>
                         <td><?php 
                           $count=0;
                           $products_given=explode(',', $val->products);

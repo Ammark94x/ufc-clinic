@@ -18,8 +18,11 @@ class MonitorController extends Controller
         $products=json_decode($products);
         $user=json_decode($user);
         $gender=$user[0]->gender;
-        $monitor_user=monitor::orderBy('id', 'DESC')->where('user_id',$id)->get();
         if($gender == 'male'){
+        	$monitor_user=monitor::orderBy('id', 'DESC')->where([
+	        ['user_id', '=', $id],
+	        ['gender', '=', 'male']
+	        ])->get();
         	$last_visit=monitor::orderBy('id', 'desc')->where([['gender', '=', 'male'],['user_id', '=', $id]])->first();
         	if(isset($last_visit->products)){
         		$given_products=explode(',',$last_visit->products);
@@ -27,6 +30,10 @@ class MonitorController extends Controller
         	}
             return view('admin.monitor_male',compact('user','products','monitor_user','last_visit','given_product'));        
         }else{
+        	$monitor_user=monitor::orderBy('id', 'DESC')->where([
+	        ['user_id', '=', $id],
+	        ['gender', '=', 'female']
+	        ])->get();
         	$last_visit=monitor::orderBy('id', 'desc')->where([['gender', '=', 'female'],['user_id', '=', $id]])->first();
         	if(isset($last_visit->products)){
         		$given_products=explode(',',$last_visit->products);
@@ -40,8 +47,7 @@ class MonitorController extends Controller
     public function storeMonitor(Request $request){
 
     	
-    	/*var_dump($gender);
-    	die;*/
+    	
     	if($_POST['gender'] == 'male'){
     		$product=implode(',',$_POST['product']);
 	    	$product_quantity=implode(',', $_POST['product_quantity']);
@@ -82,7 +88,7 @@ class MonitorController extends Controller
 	            'product_quantity'=>$product_quantity,
 	            'full_payment'=>$_POST['full_payment'],
 	            'payment_recieved'=>$_POST['payment_recieved'],
-	            'balance'=>$_POST['balance'],
+	            'balance'=>$_POST['balance']
 	        ]);
 
     	}
