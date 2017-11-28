@@ -8,6 +8,6 @@ class storekeeper extends Model
 {
     protected $table = 'storekeeper';
      protected $fillable = [
-        'item_name', 'item_quantity', 'item_price'];
+        'product_id', 'date', 'opening','recieving','total','used','closed'];
     public $timestamps = true;
 }

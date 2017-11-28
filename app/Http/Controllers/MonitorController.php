@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\monitor;
 use App\User;
 use App\storekeeper;
+use App\product;
 	
 class MonitorController extends Controller
 {
@@ -13,7 +14,7 @@ class MonitorController extends Controller
 	/*monitor client*/
     public function monitorClient($id){
         $user=User::where('id',$id)->get();
-        $products=storekeeper::get();
+        $products=product::get();
         $products=json_decode($products);
         $user=json_decode($user);
         $gender=$user[0]->gender;
@@ -22,14 +23,14 @@ class MonitorController extends Controller
         	$last_visit=monitor::orderBy('id', 'desc')->where([['gender', '=', 'male'],['user_id', '=', $id]])->first();
         	if(isset($last_visit->products)){
         		$given_products=explode(',',$last_visit->products);
-        		$given_product=storekeeper::whereIn('id',$given_products)->select('item_name')->get();
+        		$given_product=product::whereIn('id',$given_products)->select('item_name')->get();
         	}
             return view('admin.monitor_male',compact('user','products','monitor_user','last_visit','given_product'));        
         }else{
         	$last_visit=monitor::orderBy('id', 'desc')->where([['gender', '=', 'female'],['user_id', '=', $id]])->first();
         	if(isset($last_visit->products)){
         		$given_products=explode(',',$last_visit->products);
-        		$given_product=storekeeper::whereIn('id',$given_products)->select('item_name')->get();
+        		$given_product=product::whereIn('id',$given_products)->select('item_name')->get();
         	}
             return view('admin.monitor_female',compact('user','products','last_visit','monitor_user','given_product'));
         }
@@ -47,6 +48,7 @@ class MonitorController extends Controller
 	    	$gender=$_POST['gender'];
 	    	monitor::create([
 	            'dov'=>$_POST['dov'],
+	            'package'=>$_POST['package'],
 	            'present_weight'=>$_POST['present_weight'],
 	            'result'=>$_POST['result'],
 	            'full_payment'=>$_POST['full_payment'],
@@ -64,6 +66,7 @@ class MonitorController extends Controller
 	    	$gender=$_POST['gender'];
 	    	monitor::create([
 	            'dov'=>$_POST['dov'],
+	            'package'=>$_POST['package'],
 	            'neck'=>$_POST['neck'],
 	            'chest'=>$_POST['chest'],
 	            'gender'=>$_POST['gender'],
@@ -83,6 +86,6 @@ class MonitorController extends Controller
 	        ]);
 
     	}
-    	return redirect()->back()->with('status', 'Added successfully!');
+    	return redirect()->back()->with('status','Successfully added !');
     }
 }

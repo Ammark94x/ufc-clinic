@@ -45,8 +45,6 @@
                           </div>
                         </th>
                         <th style="width:10%">Item Name</th>
-                        <th style="width:15%" data-hide="phone,tablet">Item Quantity</th>
-                        <th style="width:6%">Item Price </th>
                         @if(Auth::user()->role=='admin')
                         <th style="width:6%">Actions </th>
                         @endif
@@ -61,9 +59,7 @@
                             <label for="checkbox3"></label>
                           </div>
                         </td>
-                        <td>{{$items->item_name}}{{-- <span class="label label-important">ALERT!</span> --}}</td> 
-                        <td><span class="muted">{{$items->item_quantity}}</span></td>
-                        <td><span class="muted">{{$items->item_price}}</span></td>
+                        <td>{{$items->item_name}}{{-- <span class="label label-important">ALERT!</span> --}}</td>
                         @if(Auth::user()->role=='admin')
                         <td>
                           <a href="{{route('edititem',['id' => $items->id])}}" class="btn btn-primary btn-xs btn-mini" ><i class="fa fa-paste"></i> Edit</a>

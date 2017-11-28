@@ -101,6 +101,16 @@
                             <td style="font-weight: bold;">Quantity</td>
                             <td>{{$quantity[$count]}}</td>
                           </tr>
+                          <tr>
+                            <td style="font-weight: bold;">Package</td>
+                            <td>
+                              @if(isset($last_visit->package))
+                                {{$last_visit->package}}
+                              @endif
+                            </td>
+                            <td></td>
+                            <td></td>
+                          </tr>
                           <?php $count++;?>
                           @endforeach
                           <tr>
@@ -159,7 +169,7 @@
                           </div>   
                           <div class="col-md-4">
                             <label>Present Weight</label>
-                            <input name="present_weight" type="number" min="1" type="text" class="form-control" required="">
+                            <input name="present_weight" type="number" min="1" type="text" id="present_weight" class="form-control" required="">
                           </div>
                           <div class="col-md-4">
                             <label>Result</label>
@@ -169,7 +179,7 @@
                         <div class="row form-row">
                           <div class="col-md-4">
                             <label>Weight in LBS</label>
-                            <input name="weight" type="number" min="1" type="text" class="form-control" required="" >
+                            <input name="weight" type="number" id="weight" min="1" type="text" class="form-control" required="" readonly="">
                           </div>
                           <div class="col-md-4">
                             <label>Full Payment</label>
@@ -183,6 +193,17 @@
                             <label>Balance</label>
                             <input name="balance" type="number" id="balance" type="text" class="form-control" required="" >
                           </div>
+                          <div class="col-md-6">
+                              <label>Package</label>
+                              <select name="package" required="">
+                                <option value="0">Select package</option>
+                                <option value="BMR">BMR</option>
+                                <option value="15 days package">15 days package</option>
+                                <option value="Continue">Continue</option>
+                                <option value="Closed">Closed</option>
+                                
+                              </select> 
+                            </div>
                           {{-- hidden fields for the databale --}}
                           <input type="hidden" name="gender" value="{{$gender}}">
                           <input type="hidden" name="user_id" value="{{$user_id}}">
@@ -254,6 +275,7 @@
                         <th>Result</th>
                         <th>Weight in LBS</th>
                         <th>Products</th>
+                        <th>Package</th>
                         <th>Full Payment</th>
                         <th>Payment Recieved</th>
                         <th>Balance</th>
@@ -284,6 +306,7 @@
                              
                           }
                         ?></td>
+                        <td class="center">{{$monitor->package}}</td>
                         <td class="center">{{$monitor->full_payment}}</td>
                         <td>{{$monitor->payment_recieved}}</td>
                         <td class="center">{{$monitor->balance}}</td>
@@ -318,6 +341,13 @@
         balance=+full_payment - +payment_recieved;
         $('#balance').val(balance);
       });
+    </script>
+    <script type="text/javascript">
+      $('#present_weight').on('keyup',function (){
+        present_weight=$(this).val();
+        present_weight=present_weight*2.205;
+        $('#weight').val(present_weight);
+      })
     </script>
     <!-- END PAGE LEVEL JS INIT -->
     {{-- <script src="{{URL('/')}}/backend/assets/js/datatables.js" type="text/javascript"></script> --}}

@@ -26,20 +26,13 @@
                     <a href="javascript:;" class="remove"></a>
                   </div>
                 </div>
+                
                 <div class="grid-body no-border">
                   <form action="{{route('saveItem')}}" id="form_traditional_validation" method="POST" name="form_traditional_validation"  autocomplete="off" class="validate">
                     {{csrf_field()}}
                     <div class="form-group">
                       <label class="form-label">Item Name</label><span class="help"></span>
                       <input class="form-control"   type="text" name="item_name" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Item Quantity</label><span class="help"></span>
-                      <input class="form-control"  type="number" name="item_quantity" required>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Item Price</label><span class="help"></span>
-                      <input class="form-control"  type="number" name="item_price" required>
                     </div>
                     </div>
                     <div class="form-actions">
@@ -61,4 +54,17 @@
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{URL('/')}}/backend/assets/js/form_validations.js" type="text/javascript"></script>
     <script src="{{URL('/')}}/backend/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $("input").on('keyup',function(){
+        opening=$('#opening').val();
+        recieving=$('#recieving').val();
+        total=$('#total').val();
+        closed=$('#closed').val();
+        used=$('#used').val();
+        sum= +opening +  +recieving;
+        $('#total').val(sum);
+        sum= +sum - +used;
+        $('#closed').val(sum);
+      });
+    </script>
 @stop

@@ -19,6 +19,13 @@
             <li>
               <li class=""><a href=""><i class="material-icons">home</i> <span class="title">Dashboard</span></a>
             </li>
+            <li class="   "> <a href=""><i class="material-icons">list</i> <span class="title">Reporting</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <ul class="sub-menu">
+              <li> <a href="{{route('register')}}" > Register client</a> </li>
+              <li> <a href="{{route('register')}}" > Register client</a> </li>
+              <li> <a href="{{route('register')}}" > Register client</a> </li>
+              </ul>
+            </li>
             <li class="   "> <a href="index.html"><i class="material-icons">home</i> <span class="title">Clients</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
                 <li > <a href="{{route('register')}}" > Register client</a> </li>
@@ -32,10 +39,10 @@
               </ul>
             </li>
              <li>
-              <li class="   "> <a href="#"><i class="material-icons">home</i> <span class="title">Items</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <li class="   "> <a href="#"><i class="material-icons">home</i> <span class="title">Products</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
-                <li > <a href="{{route('addItems')}}" > Add Items</a> </li>
-                <li class=""> <a href="{{route('listItems')}}"> List Items <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
+                <li > <a href="{{route('addItems')}}" > Add product</a> </li>
+                <li class=""> <a href="{{route('listItems')}}"> List product <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
 
               </ul>
             </li>
