@@ -26,7 +26,7 @@ class StorekeeperController extends Controller
 
     /*edit view for item*/
     public function edititem($id){
-        $getItem=storekeeper::where('product_id', '=', $id)->get();
+        $getItem=storekeeper::orderBY('created_at','desc')->where('product_id', '=', $id)->get();
         $product=product::where('id', '=', $id)->get();
         return view('storekeeper.update_item',compact('getItem','product'));
     }
@@ -39,6 +39,7 @@ class StorekeeperController extends Controller
         ['date', '=', $date],
         ['product_id', '=', $request['product_id']]
         ])->value('date');
+
         if($exist != '')
             {
                 storekeeper::where('date',$request['date'])->update([

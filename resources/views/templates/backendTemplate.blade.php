@@ -51,12 +51,12 @@
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="index.html" class="dropdown-toggle active" data-toggle="">
+              <a href="#" class="dropdown-toggle active" data-toggle="">
                 <i class="material-icons">home</i>
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="email.html" class="dropdown-toggle">
+              <a href="#" class="dropdown-toggle">
                 <i class="material-icons">email</i><span class="badge bubble-only"></span>
               </a>
             </li>
@@ -173,13 +173,13 @@
                 </a>
                 <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
                   <li>
-                    <a href="user-profile.html"> My Account</a>
+                    <a href="#"> My Account</a>
                   </li>
                   <li>
-                    <a href="calender.html">My Calendar</a>
+                    <a href="#">My Calendar</a>
                   </li>
                   <li>
-                    <a href="email.html"> My Inbox&nbsp;&nbsp;
+                    <a href="#"> My Inbox&nbsp;&nbsp;
                       <span class="badge badge-important animated bounceIn">2</span>
                     </a>
                   </li>

@@ -61,7 +61,7 @@
                           </div>
                           <div class="col-md-4">
                             <label>Closed</label>
-                            <input name="closed"  type="text"  class="form-control" id="closed" required="" >
+                            <input name="closed"  type="text"  class="form-control" id="closed" required="" readonly="">
                           </div>
                         </div>
                         {{-- <div class="row small-text">
@@ -74,7 +74,7 @@
                     <div class="form-actions">
                       <div class="pull-right">
                         <input type="submit" class="btn btn-danger btn-cons"><i class="icon-ok"></i>
-                        <a class="btn btn-white btn-cons" href="{{route('clientList')}}">Cancel</a>
+                        <a class="btn btn-white btn-cons" href="{{route('listItems')}}">Cancel</a>
                       </div>
                     </div>
                   </form>
