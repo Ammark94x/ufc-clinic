@@ -1,6 +1,6 @@
 @extends('templates.backendTemplate')
 @section('title')
-	Register Client
+	Add Weber Sheets
 @endsection
 @section('customStyles')
     <link href="{{URL('/')}}/backend/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
@@ -28,10 +28,9 @@
                 </div>
 
                 <div class="grid-body no-border">
-                  <a href="{{route('listVisitors')}}" class="btn btn-success pull-right">View visitors</a>
                   <form action="{{route('addVisitor')}}" id="form_traditional_validation" method="POST" name="form_traditional_validation"  autocomplete="off" class="validate">
                     {{csrf_field()}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                       <label class="form-label">Select type</label><span class="help"></span>
                       <select class="select_type" name="type">
                         <option value="Inquiry Calls">Inquiry Calls</option>
@@ -41,7 +40,8 @@
                         <option value="Vcita Sheets">Vcita Sheets</option>
                         <option value="Weber Sheets">Weber Sheets</option>
                       </select>
-                    </div>
+                    </div> --}}
+                    <input type="hidden" name="type" value="Weber Sheets">
                     <div class="form-group">
                       <label class="form-label">Name</label><span class="help"></span>
                       <input class="form-control"   type="text" name="name" required>
@@ -109,21 +109,4 @@
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{URL('/')}}/backend/assets/js/form_validations.js" type="text/javascript"></script>
     <script src="{{URL('/')}}/backend/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(document).ready(function (){
-          $('.select_type').change(function() {
-          type=$('.select_type').val();
-          if(type=='Facebook Messages'){
-            $('#fb_msg').show('slow');
-          }else{
-            $('#fb_msg').hide('slow');
-          }
-          if(type =='vcs'){
-            $('#hide_link').show('slow');
-          }else{
-            $('#hide_link').hide('slow');
-          }
-        });
-      });
-    </script>
 @stop

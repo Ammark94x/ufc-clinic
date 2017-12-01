@@ -59,13 +59,21 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/updateReceptionClient', ['as' => 'updateReceptionClient',  'uses' => 'UserController@updateReceptionClient']);/*
 	/*delete recption client*/
 	Route::get('/deleteReceptionClient/{id}', ['as' => 'deleteReceptionClient',  'uses' => 'UserController@deleteReceptionClient']);
-	Route::get('/visitorDetail', ['as' => 'visitorDetail',  'uses' => 'ReceptionController@visitorDetail']);/*add*/
+	Route::get('/addInquiries', ['as' => 'addInquiries',  'uses' => 'ReceptionController@addInquiries']);/*add*/
 	/*add visitor*/
 	Route::post('/addVisitor', ['as' => 'addVisitor',  'uses' => 'ReceptionController@addVisitor']);/*add*/
-	/*list of visitors*/
-	Route::get('/listVisitors', ['as' => 'listVisitors',  'uses' => 'ReceptionController@listVisitors']);/*list*/
-	/*Edit visitor*/
 	
+	Route::get('/addmissedCalls', ['as' => 'addmissedCalls',  'uses' => 'ReceptionController@addmissedCalls']);/*add*/
+
+	Route::get('/addfbMsg', ['as' => 'addfbMsg',  'uses' => 'ReceptionController@addfbMsg']);/*add*/
+
+	Route::get('/vicitsSheets', ['as' => 'vicitsSheets',  'uses' => 'ReceptionController@vicitsSheets']);/*add*/
+
+	Route::get('/add_visitorSheets', ['as' => 'add_visitorSheets',  'uses' => 'ReceptionController@add_visitorSheets']);/*add*/
+
+	Route::get('/add_weberSheets', ['as' => 'add_weberSheets',  'uses' => 'ReceptionController@add_weberSheets']);/*add*/
+	/*Edit visitor*/
+		
 	/*view inquirycalls*/
 	Route::get('/inquiryCalls', ['as' => 'inquiryCalls',  'uses' => 'ReceptionController@inquiryCalls']);
 

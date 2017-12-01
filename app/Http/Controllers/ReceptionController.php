@@ -10,13 +10,40 @@ class ReceptionController extends Controller
 {
 
 	/*Add form for visitors*/
-    public function visitorDetail(){
+    public function addInquiries(){
     	$cities= cities::get();
-    	return view('inquiries.visitor_details',compact('cities'));
+    	return view('inquiries.add_inquiries',compact('cities'));
+    }
+
+    public function add_visitorSheets(){
+        $cities= cities::get();
+        return view('inquiries.add_visitor',compact('cities'));
+    }
+
+
+    public function addmissedCalls(){
+        $cities= cities::get();
+        return view('inquiries.add_missedCalls',compact('cities'));
+    }
+
+    public function addfbMsg(){
+        $cities= cities::get();
+        return view('inquiries.add_fbMsg',compact('cities'));
+    }
+
+    public function vicitsSheets(){
+        $cities= cities::get();
+        return view('inquiries.vicita_sheets',compact('cities'));
+    }
+
+    public function add_weberSheets(){
+        $cities= cities::get();
+        return view('inquiries.weber_sheets',compact('cities'));
     }
 
     /*add visitors*/
     public function addVisitor(Request $request){
+        
     	visitor::create([
             'name'=>$request->name,
             'fb_msg'=>$request->fb_msg,

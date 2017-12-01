@@ -80,16 +80,23 @@
                           </tr>
                           
                           <?php $count=0;?>
-                          @foreach($product as $key =>$val)
+                         @foreach($product as $key =>$val)
                           <tr>
-                            <td style="font-weight: bold;">Product</td>
-                            
-                            <td>{{$given_products[$count]->item_name}}</td>
+                            <td style="font-weight: bold;">Products</td>
+                            <td>
+                              @if(isset($given_products[$count]->item_name))
+                                {{$given_products[$count]->item_name}}
+                              @endif  
+                            </td>
                             <td style="font-weight: bold;">Quantity</td>
-                            <td>{{$quantity[$count]}}</td>
+                            <td>
+                              @if(isset($quantity[$count]))
+                                {{$quantity[$count]}}
+                              @endif</td>
                           </tr>
-                            <?php $count++;?>
-                            @endforeach
+                          
+                          <?php $count++;?>
+                          @endforeach
                           <tr>
                             <td style="font-weight: bold;">Package</td>
                             <td>
@@ -184,12 +191,11 @@
                           <div class="col-md-6">
                               <label>Package</label>
                               <select name="package" required="">
-                                <option value="0">Select package</option>
+                                <option value="">Select package</option>
                                 <option value="BMR">BMR</option>
                                 <option value="15 days package">15 days package</option>
                                 <option value="Continue">Continue</option>
                                 <option value="Closed">Closed</option>
-                                
                               </select> 
                             </div>
                           {{-- hidden fields for the databale --}}
@@ -201,11 +207,11 @@
 
                           <div class="col-md-4">
                             <label>Full Payment</label>
-                            <input name="full_payment" type="number" min="1" id="full_payment" type="text" class="form-control" required="" >
+                            <input name="full_payment" type="number"  id="full_payment" type="text" class="form-control"  >
                           </div>
                           <div class="col-md-4">
                             <label>Payment Recieved</label>
-                            <input name="payment_recieved"  type="text" id="payment_recieved" class="form-control"  required="">
+                            <input name="payment_recieved"  type="text" id="payment_recieved" class="form-control"  >
                           </div>
                           <div class="col-md-4">
                             <label>Balance</label>
@@ -371,4 +377,4 @@
     <!-- END PAGE LEVEL JS INIT -->
     {{-- <script src="{{URL('/')}}/backend/assets/js/datatables.js" type="text/javascript"></script> --}}
 
-@stop
+@stop 

@@ -90,17 +90,24 @@
                             <td></td>
                           </tr>
                             <?php $count=0;?>
+                         
                           @foreach($product as $key =>$val)
                           <tr>
                             <td style="font-weight: bold;">Products</td>
                             <td>
-                              @if(isset($last_visit->products))
+                              @if(isset($given_products[$count]->item_name))
                                 {{$given_products[$count]->item_name}}
                               @endif  
                             </td>
                             <td style="font-weight: bold;">Quantity</td>
-                            <td>{{$quantity[$count]}}</td>
+                            <td>
+                              @if(isset($quantity[$count]))
+                                {{$quantity[$count]}}
+                              @endif</td>
                           </tr>
+                          
+                          <?php $count++;?>
+                          @endforeach
                           <tr>
                             <td style="font-weight: bold;">Package</td>
                             <td>
@@ -111,8 +118,6 @@
                             <td></td>
                             <td></td>
                           </tr>
-                          <?php $count++;?>
-                          @endforeach
                           <tr>
                             <td style="font-weight: bold;">Full Payment</td>
                             <td>
@@ -183,25 +188,24 @@
                           </div>
                           <div class="col-md-4">
                             <label>Full Payment</label>
-                            <input name="full_payment" type="number" min="1" id="full_payment" type="text" class="form-control" required="" >
+                            <input name="full_payment" type="number" min="1" id="full_payment" type="text" class="form-control"  >
                           </div>
                           <div class="col-md-4">
                             <label>Payment Recieved</label>
-                            <input name="payment_recieved"  type="text" id="payment_recieved" class="form-control" required="" >
+                            <input name="payment_recieved"  type="text" id="payment_recieved" class="form-control"  >
                           </div>
                           <div class="col-md-4">
                             <label>Balance</label>
-                            <input name="balance" type="number" id="balance" type="text" class="form-control" required="" >
+                            <input name="balance" type="number" id="balance" type="text" class="form-control" >
                           </div>
                           <div class="col-md-6">
                               <label>Package</label>
                               <select name="package" required="">
-                                <option value="0">Select package</option>
+                                <option >Select package</option>
                                 <option value="BMR">BMR</option>
                                 <option value="15 days package">15 days package</option>
                                 <option value="Continue">Continue</option>
                                 <option value="Closed">Closed</option>
-                                
                               </select> 
                             </div>
                           {{-- hidden fields for the databale --}}
@@ -212,7 +216,7 @@
                             <div class="col-md-6">
                               <label>Products</label>
                               <select name="product[]" required="">
-                                <option value="0">Select product</option>
+                                <option value="">Select product</option>
                                 @foreach($products as $key => $val)
                                 <option value="{{$val->id}}">{{$val->item_name}}</option>
                                 @endforeach
