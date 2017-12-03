@@ -4,8 +4,6 @@
 @endsection
 @section('customStyles')    
     <link href="{{URL('/')}}/backend/assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="{{URL('/')}}/backend/assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    <link href="{{URL('/')}}/backend/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
 @endsection
 @section('content')
                     <ul class="breadcrumb">
@@ -35,15 +33,9 @@
                         {{ session('status') }}
                     </div>
                   @endif
-                  <table class="table table-hover table-condensed" id="example">
+                  <table class="table table-bordered" id="ufc_table">
                     <thead>
                       <tr>
-                        <th style="width:1%">
-                          <div class="checkbox check-default" style="margin-right:auto;margin-left:auto;">
-                            <input type="checkbox" value="1" id="checkbox1">
-                            <label for="checkbox1"></label>
-                          </div>
-                        </th>
                         <th style="width:10%">Item Name</th>
                         @if(Auth::user()->role=='admin')
                         <th style="width:6%">Actions </th>
@@ -53,12 +45,6 @@
                     <tbody>
                       @foreach($storekeeper as $key =>$items)
                       <tr>
-                        <td>
-                          <div class="checkbox check-default">
-                            <input type="checkbox" value="3" id="checkbox3">
-                            <label for="checkbox3"></label>
-                          </div>
-                        </td>
                         <td>{{$items->item_name}}{{-- <span class="label label-important">ALERT!</span> --}}</td>
                         @if(Auth::user()->role=='admin')
                         <td>
@@ -77,8 +63,4 @@
           </div>
 @endsection
 @section('customScripts')
-    <script src="{{URL('/')}}/backend/assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="{{URL('/')}}/backend/assets/plugins/jquery-datatable/extra/js/dataTables.tableTools.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="{{URL('/')}}/backend/assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
-    <script type="text/javascript" src="{{URL('/')}}/backend/assets/plugins/datatables-responsive/js/lodash.min.js"></script>
 @stop

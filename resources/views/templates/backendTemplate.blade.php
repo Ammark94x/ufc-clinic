@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{url('/backend')}}/assets/plugins/animate.min.css" rel="stylesheet" type="text/css" />
     <link href="{{url('/backend')}}/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{url('/datatables')}}/datatables.min.css">
     <!-- END PLUGIN CSS -->
     @yield('customStyles')
     <!-- BEGIN CORE CSS FRAMEWORK -->
@@ -494,6 +495,7 @@
     <script src="{{url('/backend')}}/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
     <!-- BEGIN JS DEPENDECENCIES-->
     <script src="{{url('/backend')}}/assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{url('/datatables')}}/datatables.min.js"></script>
     <script src="{{url('/backend')}}/assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="{{url('/backend')}}/assets/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
     <script src="{{url('/backend')}}/assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
@@ -506,7 +508,11 @@
     <script src="{{url('/backend')}}/webarch/js/webarch.js" type="text/javascript"></script>
     <script src="{{url('/backend')}}/assets/js/chat.js" type="text/javascript"></script>
     <!-- END CORE TEMPLATE JS -->
-
+    <script type="text/javascript">
+      $(document).on('ready',function(){
+        $("#ufc_table").DataTable();
+      });
+    </script>
     @yield('customScripts')
   </body>
 </html>
