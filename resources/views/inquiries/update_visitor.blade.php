@@ -29,11 +29,11 @@
                 </div>
 
                 <div class="grid-body no-border">
-                  <a href="{{route('listVisitors')}}" class="btn btn-success pull-right">View visitors</a>
+                  
                   <form action="{{route('updateVisitor')}}" id="form_traditional_validation" method="POST" name="form_traditional_validation"  autocomplete="off" class="validate">
                   	@foreach($visitor as $key => $val)
                     {{csrf_field()}}
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                       <label class="form-label">Select type</label><span class="help"></span>
                       <select class="select_type" name="type">
                         <option value="Inquiry Calls"  @if($val->type=='Inquiry Calls')  selected @endif>Inquiry Calls</option>
