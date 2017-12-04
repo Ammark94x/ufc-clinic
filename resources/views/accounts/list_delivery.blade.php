@@ -1,26 +1,26 @@
 @extends('templates.backendTemplate')
 @section('title')
-  Register Client
+  TCS Delivery List
 @endsection
 @section('customStyles')
     <link href="{{URL('/')}}/backend/assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
     <link href="{{URL('/')}}/backend/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
 @endsection
 @section('content')
-            <ul class="breadcrumb">
+                    <ul class="breadcrumb">
             <li>
               <p>YOU ARE HERE</p>
             </li>
-            <li><a href="#" class="active">Clients</a> </li>
+            <li><a href="#" class="active">Visitors</a> </li>
           </ul>
           <div class="page-title"> <i class="icon-custom-left"></i>
-            <h3>Clients - <span class="semi-bold">List</span></h3>
+            <h3>List<span class="semi-bold">  Visitors</span></h3>
           </div>
           <div class="row-fluid">
             <div class="span12">
               <div class="grid simple ">
                 <div class="grid-title">
-                  <h4>All <span class="semi-bold">Clients</span></h4>
+                  <h4>All <span class="semi-bold">Visitors</span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -34,48 +34,36 @@
                         {{ session('status') }}
                     </div>
                   @endif
-                  <table class="table table-hover table-condensed" id="ufc_table">
+                  <table class="table table-hover table-condensed" id="ufc_datatable">
                     <thead>
                       <tr>
-                        <th style="width:1%">
-                          <div class="checkbox check-default" style="margin-right:auto;margin-left:auto;">
-                            <input type="checkbox" value="1" id="checkbox1">
-                            <label for="checkbox1"></label>
-                          </div>
-                        </th>
+                        <th style="width:10%">Date</th>
                         <th style="width:10%">Name</th>
-                        <th style="width:15%" data-hide="phone,tablet">Emails</th>
-                        <th style="width:6%">Date of visit </th>
-                        <th style="width:6%">Mobile </th>
-                        <th style="width:6%">Location </th>
-                        <th style="width:10%" data-hide="phone,tablet">Progress</th>
+                        <th style="width:6%">Area </th>
+                        <th style="width:6%">Amount </th>
+                        <th style="width:6%">Status </th>
+                        <th style="width:6%">Package </th>
+                        {{-- <th style="width:10%" data-hide="phone,tablet">Actions</th> --}}
                       </tr>
                     </thead>
                     <tbody>
-                      
-                      @foreach($user as $key =>$val)
+                      @foreach($tcs as $key => $val)
                       <tr>
-                        <td>
-                          <div class="checkbox check-default">
-                            <input type="checkbox" value="3" id="checkbox3">
-                            <label for="checkbox3"></label>
-                          </div>
-                        </td>
-                        <td>{{$val->name}}{{-- <span class="label label-important">ALERT!</span> --}}</td>
-                        <td><span class="muted">{{$val->email}}</span></td>
-                        <td><span class="muted">{{ json_decode($val->meta->data,true)['arrival_date']}}</span></td>
-                        <td><span class="muted">{{$val->mobile}}</span></td>
-                        <td><span class="muted">{{$val->location}}</span></td>
-                        <td>
-                          {{-- <div class="progress">
+                        <td>{{$val->date}}</td>
+                        <td><span class="muted"></span>{{$val->name}}</td>
+                        <td><span class="muted"></span>{{$val->area}}</td>
+                        <td><span class="muted"></span>{{$val->amount}}</td>
+                        <td><span class="muted"></span>{{$val->status}}</td>
+                        <td><span class="muted"></span>{{$val->package}}</td>
+                        {{-- <td>
+                          <div class="progress">
                             <div data-percentage="70%" class="progress-bar progress-bar-danger animate-progress-bar"></div>
-                          </div> --}}
-                          <a href="{{route('editClient',['id' => $val->id])}}" class="btn btn-primary btn-xs btn-mini" ><i class="fa fa-paste"></i> Edit</a> 
-                          <a href="{{route('deleteClient',['user_id' => $val->id])}}" class="btn btn-danger  btn-con btn-mini" ><i class="fa fa-times"></i> Delete</a>
-                          <a href="{{route('monitorClient',['user_id' => $val->id])}}" class="btn btn-primary  btn-con btn-mini" ><i class="fa fa-times"></i> Monitor</a>
-                        </td>
+                          </div>
+                          <a href="{{route('editVisitor',['id' => $val->id])}}" class="btn btn-primary btn-xs btn-mini" ><i class="fa fa-paste"></i> Edit</a> 
+                          <a href="{{route('deleteVisitor',['id' => $val->id])}}" class="btn btn-danger  btn-con btn-mini" ><i class="fa fa-times"></i> Delete</a>
+                        </td> --}}
                       </tr>
-                      @endforeach
+                     @endforeach
                     </tbody>
                   </table>
                 </div>

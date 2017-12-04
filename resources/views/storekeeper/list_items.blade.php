@@ -33,22 +33,21 @@
                         {{ session('status') }}
                     </div>
                   @endif
-                  <table class="table table-bordered" id="ufc_table">
+                  <table class="table" id="ufc_table">
                     <thead>
                       <tr>
                         <th style="width:10%">Item Name</th>
-                        @if(Auth::user()->role=='admin')
                         <th style="width:6%">Actions </th>
-                        @endif
                       </tr>
                     </thead>
                     <tbody>
                       @foreach($storekeeper as $key =>$items)
                       <tr>
                         <td>{{$items->item_name}}{{-- <span class="label label-important">ALERT!</span> --}}</td>
-                        @if(Auth::user()->role=='admin')
+                        
                         <td>
                           <a href="{{route('edititem',['id' => $items->id])}}" class="btn btn-primary btn-xs btn-mini" ><i class="fa fa-paste"></i> Edit</a>
+                          @if(Auth::user()->role=='admin')
                           <a href="{{route('deleteItem',['id' => $items->id])}}" onclick="return confirm('Are you sure you want to remove item?');" class="btn btn-danger btn-times btn-mini" ><i class="fa fa-paste"></i> Delete</a>
                         </td>
                         @endif

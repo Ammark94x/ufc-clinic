@@ -133,4 +133,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/addvideo', ['as' => 'addvideo',  'uses' => 'SettingController@addvideo']);/*add*/
 	/****************setting routes End***************************/
 
+	/****************TCS Delivery********************************/
+
+	Route::get('/addDelivery', ['as' => 'addDelivery',  'uses' => 'AccountController@addDelivery']);
+	Route::post('/insertDelivery', ['as' => 'insertDelivery',  'uses' => 'AccountController@insertDelivery']);
+	Route::get('/list_delivery', ['as' => 'list_delivery',  'uses' => 'AccountController@list_delivery']);
+
 });

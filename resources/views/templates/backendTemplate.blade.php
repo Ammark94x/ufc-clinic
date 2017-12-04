@@ -510,7 +510,9 @@
     <!-- END CORE TEMPLATE JS -->
     <script type="text/javascript">
       $(document).on('ready',function(){
-        $("#ufc_table").DataTable();
+        if($("#ufc_table").length){
+            $("#ufc_table").DataTable();
+        }
       });
     </script>
     @yield('customScripts')

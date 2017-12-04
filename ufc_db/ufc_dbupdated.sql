@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2017 at 11:29 PM
--- Server version: 10.1.25-MariaDB
+-- Generation Time: Dec 04, 2017 at 04:38 AM
+-- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -160,6 +160,13 @@ CREATE TABLE `monitor` (
   `package` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `monitor`
+--
+
+INSERT INTO `monitor` (`id`, `present_weight`, `result`, `weight`, `full_payment`, `payment_recieved`, `balance`, `products`, `product_quantity`, `gender`, `neck`, `chest`, `side_buns`, `waist`, `hips`, `thighs`, `arms`, `lower_waist`, `total_inches`, `dov`, `user_id`, `created_at`, `updated_at`, `package`) VALUES
+(15, '121', '121', 267, '121', '1212', '-1091', '1', '12', 'male', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '04-12-2017', 47, '2017-12-04 14:14:57', '2017-12-04 14:14:57', 'BMR');
+
 -- --------------------------------------------------------
 
 --
@@ -189,7 +196,8 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `item_name`) VALUES
 (1, 'T3 capsule'),
-(2, 'Herbal Water Green');
+(2, 'Herbal Water Green'),
+(3, 'T4');
 
 -- --------------------------------------------------------
 
@@ -250,7 +258,33 @@ CREATE TABLE `storekeeper` (
 INSERT INTO `storekeeper` (`product_id`, `opening`, `recieving`, `total`, `used`, `closed`, `created_at`, `updated_at`, `date`) VALUES
 (1, '791', '0', '791', '536', '255', '2017-11-29 04:08:16', '2017-11-29 10:40:48', '28-11-2017'),
 (2, '700', '0', '700', '255', '445', '2017-11-29 10:42:52', '2017-11-29 10:42:52', '28-11-2017'),
-(1, '22', '22', '44', '22', '22', '2017-12-02 15:15:35', '2017-12-02 15:26:17', '02-12-2017');
+(1, '22', '22', '44', '22', '22', '2017-12-02 15:15:35', '2017-12-02 15:26:17', '02-12-2017'),
+(2, '25', '55', '80', '15', '65', '2017-12-04 19:06:36', '2017-12-04 19:06:36', '04-12-2017');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tcs_delivery`
+--
+
+CREATE TABLE `tcs_delivery` (
+  `id` int(11) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `area` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `package` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tcs_delivery`
+--
+
+INSERT INTO `tcs_delivery` (`id`, `date`, `name`, `area`, `amount`, `status`, `package`, `created_at`, `updated_at`) VALUES
+(5, '2017-12-23', 'test', 'test', '1000', 'Recieved', 'OLD/NEW', '2017-12-04 15:33:59', '2017-12-04 15:33:59');
 
 -- --------------------------------------------------------
 
@@ -283,7 +317,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `f_name`, `email`, `password`, `res_phone`, `office_phone`, `mobile`, `address`, `age`, `gender`, `remember_token`, `role`, `created_at`, `updated_at`, `location`, `type`) VALUES
-(17, 'Ammar', NULL, 'ammarkhan94@outlook.com', '$2y$10$mPhCcuJvDH2/Kx/m330mcuxajn641AdFWSZq1wRXuT1meIkmT.J2a', NULL, NULL, '923313960846', NULL, '22', NULL, 'UY5sUWau1S5k7DrPU3tikQ6Y7Oe7NbZxlDUk6dmwS6M5ZHEmJRS8MedJ9BRs', 'admin', NULL, '2017-12-02 10:27:11', '', 0);
+(17, 'Ammar', NULL, 'ammarkhan94@outlook.com', '$2y$10$mPhCcuJvDH2/Kx/m330mcuxajn641AdFWSZq1wRXuT1meIkmT.J2a', NULL, NULL, '923313960846', NULL, '22', NULL, 'pboaVaqgtOEuo4YWXfyCch79zFOteCY6z7qxmDN309tLPI5rjQ0FmrZW43jK', 'admin', NULL, '2017-12-04 14:48:54', '', 0),
+(46, 'Ammar', NULL, 'account@ufc.com', '$2y$10$dQaLpTXJMyBn6eHHxadTk.6Nl6DhPRmyHr.cp/f.8sZtr8LtlLDK2', NULL, NULL, NULL, NULL, NULL, NULL, 'IpwZzFMy2tBcmdXJse4CTwAmuf8Wk7FD3QtNSzVNgAzCFvyr1GhoFjno8LTg', 'account', '2017-12-04 12:54:54', '2017-12-04 14:47:14', NULL, NULL),
+(47, 'Shariq', NULL, 'asas@asa.com', '$2y$10$DitKy023CWOXn2phQl/ox.e/ejIrmNfJa9qHMAdWV1KQ9NdmqOhQa', '', '', '12121', NULL, '21', 'male', NULL, NULL, '2017-12-04 13:42:01', '2017-12-04 13:42:01', '', 1),
+(48, 'store', NULL, 'storekeeper@ufc.com', '$2y$10$ekWlnZutkGXO1ijCDW9F8uslocHjeHGMQUDXS1BMJL1E8ozP010aC', NULL, NULL, NULL, NULL, NULL, NULL, '9nUbEDyC3hfjbIQdP40QfvotUyBDJTLDehulf1XoFbCjADN2MqH7QcwkQshM', 'storekeeper', '2017-12-04 14:01:10', '2017-12-04 14:10:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,6 +335,13 @@ CREATE TABLE `user_meta` (
   `history` text,
   `measurment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_meta`
+--
+
+INSERT INTO `user_meta` (`id`, `user_id`, `data`, `history`, `measurment`) VALUES
+(18, 47, '{\"about_us\":\"facebook\",\"arrival_date\":\"04\\/12\\/2017\",\"arrival_time\":\"\",\"next_visit\":\"\",\"height\":\"\",\"inch\":\"\",\"actual_weight\":\"\",\"after_bmr_test\":\"\",\"variation_weight\":\"\",\"ideal_weight\":\"\",\"consultant_openion\":\"\",\"loosing_Weight\":\"\"}', '{\"name\":\"\",\"age\":\"\",\"profession\":\"\",\"disease_status\":\"\",\"disease\":\"\",\"martial_status\":\"\",\"year\":\"\",\"childrens_numbers\":\"\",\"over_weight\":\"\",\"delivery_children_by\":\"\",\"dnc_miscarriage\":\"\",\"allergy\":\"\",\"surgery\":\"\",\"diabetic\":\"\",\"hyper_tension\":\"\",\"anemic\":\"\",\"smoke\":\"\",\"smoking\":\"\",\"alcoholic_drink\":\"\",\"extra_drugs\":\"\",\"medication\":\"\",\"menstrual_history\":\"\",\"Days\":\"\",\"frequency\":\"\",\"type\":\"\",\"color\":\"\",\"did_diet\":\"\",\"how_long_diet\":\"\",\"how_much_loose\":\"\",\"regain_weight\":\"\",\"physical_exercise\":\"\"}', '{\"neck\":\"\",\"chest\":\"\",\"side_buns\":\"\",\"after_bmr_test\":\"\",\"hips\":\"\",\"thies\":\"\",\"arms\":\"\"}');
 
 -- --------------------------------------------------------
 
@@ -326,7 +370,7 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`id`, `name`, `fb_msg`, `type`, `phone_number`, `date`, `status`, `source`, `area`, `link_from`, `gender`, `created_at`, `updated_at`) VALUES
-(1, 'wahaj', '', 'Inquiry Calls', '0307659856', '25-11-2017', 'waiting', 'facebook', 'gulshan', '', 'male', '2017-11-25 12:30:39', '2017-11-25 12:30:39'),
+(1, 'wahaj', '', 'Inquiry Calls', '0307659856', '25-11-2017', 'waiting', 'facebook', 'gulshan', '', 'male', '2017-12-04 00:49:26', '2017-12-04 12:49:26'),
 (2, 'Ammar', '', 'Missed Called', '03313960846', '25-11-2017', 'started', 'facebook', 'gulshan', '', 'male', '2017-11-25 12:37:56', '2017-11-25 12:37:56'),
 (3, 'faraz', 'I will contact soon', 'Facebook Messages', '300212451', '25-11-2017', 'active', 'fb', 'gulsjhan', '', 'male', '2017-11-25 12:43:08', '2017-11-25 12:43:08'),
 (4, 'iqbal', '', 'Visitors Sheet', '032165698', '25-11-2017', 'active', 'walkin', 'gulshan', '', 'male', '2017-11-25 12:45:00', '2017-11-25 12:45:00'),
@@ -377,6 +421,12 @@ ALTER TABLE `setting`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tcs_delivery`
+--
+ALTER TABLE `tcs_delivery`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -408,12 +458,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `monitor`
 --
 ALTER TABLE `monitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `reception`
 --
@@ -425,15 +475,20 @@ ALTER TABLE `reception`
 ALTER TABLE `setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `tcs_delivery`
+--
+ALTER TABLE `tcs_delivery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `user_meta`
 --
 ALTER TABLE `user_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `visitors`
 --
