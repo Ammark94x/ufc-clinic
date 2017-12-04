@@ -139,4 +139,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/insertDelivery', ['as' => 'insertDelivery',  'uses' => 'AccountController@insertDelivery']);
 	Route::get('/list_delivery', ['as' => 'list_delivery',  'uses' => 'AccountController@list_delivery']);
 
+	/*****************TCS DELIVERY END**************************/
+
+
+	/*****************REPORTING SECTION START******************/
+	Route::get('/productReport', ['as' => 'productReport',  'uses' => 'AccountController@productReport']);
+	Route::get('/packageReport', ['as' => 'packageReport',  'uses' => 'AccountController@packageReport']);
+	Route::get('/tcsReport', ['as' => 'tcsReport',  'uses' => 'AccountController@tcsReport']);
+	Route::get('/monthlyReport', ['as' => 'monthlyReport',  'uses' => 'AccountController@monthlyReport']);
+	Route::get('/new_customerReport', ['as' => 'new_customerReport',  'uses' => 'AccountController@new_customerReport']);
+
 });

@@ -22,6 +22,14 @@
                 <li class=""> <a href="{{route('addDelivery')}}"> Add Delivery </a></li>
                 <li class=""> <a href="{{route('list_delivery')}}"> List Delivery </a></li>
               </ul>
+               <li class="   "> <a href="#"><i class="material-icons">list</i> <span class="title">Reporting</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <ul class="sub-menu">
+                <li class=""> <a href="{{route('productReport')}}"> Product Report</a></li>
+                <li class=""> <a href="{{route('packageReport')}}">Package Report </a></li>
+                <li class=""> <a href="{{route('tcsReport')}}">TCS Delivery Report </a></li>
+                <li class=""> <a href="{{route('monthlyReport')}}">Monthly Earning Report </a></li>
+                <li class=""> <a href="{{route('new_customerReport')}}">Monthly New Customer Report </a></li>
+              </ul>
           </ul>
           
           <div class="clearfix"></div>
