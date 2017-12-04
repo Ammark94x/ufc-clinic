@@ -74,6 +74,8 @@
 	            <option value="receptionist">Receptionist</option>
 	            <option value="consultant">Consultant</option>
 	            <option value="storekeeper">Storekeeper</option>
+              <option value="account">Account</option>
+              <option value="storekeeper">Call Center</option>
 	          </select>
             </div>
           </div>
