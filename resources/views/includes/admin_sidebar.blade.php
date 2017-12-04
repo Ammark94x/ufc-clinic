@@ -19,13 +19,7 @@
             <li>
               <li class=""><a href=""><i class="material-icons">home</i> <span class="title">Dashboard</span></a>
             </li>
-            <li class="   "> <a href=""><i class="material-icons">list</i> <span class="title">Reporting</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
-              <ul class="sub-menu">
-              <li> <a href="{{route('register')}}" > Register client</a> </li>
-              <li> <a href="{{route('register')}}" > Register client</a> </li>
-              <li> <a href="{{route('register')}}" > Register client</a> </li>
-              </ul>
-            </li>
+            
             <li class="   "> <a href="index.html"><i class="material-icons">home</i> <span class="title">Clients</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
                 <li > <a href="{{route('register')}}" > Register client</a> </li>
@@ -94,6 +88,20 @@
               </ul>
             </li>
 
+            <li class="   "> <a href="#"><i class="material-icons">list</i> <span class="title">TCS Delivery</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <ul class="sub-menu">
+                <li class=""> <a href="{{route('addDelivery')}}"> Add Delivery </a></li>
+                <li class=""> <a href="{{route('list_delivery')}}"> List Delivery </a></li>
+              </ul>
+               <li class="   "> <a href="#"><i class="material-icons">list</i> <span class="title">Reporting</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <ul class="sub-menu">
+                <li class=""> <a href="{{route('productReport')}}"> Product Report</a></li>
+                <li class=""> <a href="{{route('packageReport')}}">Package Report </a></li>
+                <li class=""> <a href="{{route('tcsReport')}}">TCS Delivery Report </a></li>
+                <li class=""> <a href="{{route('monthlyReport')}}">Monthly Earning Report </a></li>
+                <li class=""> <a href="{{route('new_customerReport')}}">Monthly New Customer Report </a></li>
+              </ul>
+
             <li>
               <li class="   "> <a href="index.html"><i class="material-icons">list</i> <span class="title">Visitors Sheet</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
@@ -120,6 +128,8 @@
               <a href="{{route('setting')}}"> <i class="material-icons">settings</i> <span class="title">setting</span> {{-- <span class=" badge badge-disable pull-right ">203</span --}}
               </a>
             </li>
+
+
           </ul>
           
           <div class="clearfix"></div>

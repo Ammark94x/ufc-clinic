@@ -38,6 +38,7 @@
         <div class="col-md-5">
           <br>
           <form action="{{route('validate_login')}}" class="login-form validate" id="login-form" method="post" >
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
               @if (session('status'))
                 <div class="alert alert-success">
@@ -49,7 +50,7 @@
                 <input class="form-control" id="txtusername" name="email" type="email" required>
               </div>
             </div>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            
             <div class="row">
               <div class="form-group col-md-10">
                 <label class="form-label">Password</label> <span class="help"></span>
