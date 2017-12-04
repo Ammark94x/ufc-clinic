@@ -224,6 +224,8 @@
           @include('includes.storekeeper_sidebar')
         @elseif(Auth::user()->role=='consultant')
           @include('includes.consultant_sidebar') 
+        @elseif(Auth::user()->role=='account')
+          @include('includes.account_sidebar') 
         @else
           @include('includes.customer_sidebar')
         @endif
