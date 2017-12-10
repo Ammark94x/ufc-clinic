@@ -188,7 +188,7 @@
                           </div>
                           <div class="col-md-4">
                             <label>Full Payment</label>
-                            <input name="full_payment" type="number" min="1" id="full_payment" type="text" class="form-control"  >
+                            <input name="full_payment" type="number"  id="full_payment" type="text" class="form-control"  >
                           </div>
                           <div class="col-md-4">
                             <label>Payment Recieved</label>
@@ -202,7 +202,9 @@
                               <label>Package</label>
                               <select name="package" required="">
                                 <option >Select package</option>
-                                <option value="BMR">BMR</option>
+                                @for($i=1;$i<=12;$i++)
+                                <option value="{{$i}} month">{{$i}} month</option>
+                                @endfor
                                 <option value="15 days package">15 days package</option>
                                 <option value="Continue">Continue</option>
                                 <option value="Closed">Closed</option>
@@ -271,7 +273,7 @@
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table" id="example3">
+                  <table class="table" id="ufc_table">
                     <thead>
                       <tr>
                         <th>Date of visit</th>

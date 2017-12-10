@@ -93,7 +93,7 @@
                                 <input type="number" placeholder="Residential PTCL Number" name="res_phone" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
-                                <select id="source" style="width:100%" name="location">
+                                <select id="source" style="width:100%" name="location" required="">
                                   <option value="">select city</option>
                                   @foreach($cities as $key => $city)
                                   <option value="{{$city->city}}">{{$city->city}}</option>
@@ -105,13 +105,13 @@
                               </div>
 
                               <div class="col-md-4">
-                                <input type="text" placeholder="Mobile Number Ex:9231245678" name="mobile" class="form-control no-boarder " required>
+                                <input type="text" placeholder="Mobile Number Ex:9231245678" required="" name="mobile" class="form-control no-boarder " required>
                               </div>
                               <div class="col-md-4">
                                 <input type="number" placeholder="Age" name="age" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
-                                <input type="email" placeholder="Email" name="email" required class="form-control no-boarder " >
+                                <input type="email" placeholder="Email" name="email"  class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
                                 <div class="radio">
@@ -200,13 +200,28 @@
                                 <input type="text" placeholder="Enter disease" name="history[disease]" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
-                                <input type="text" placeholder="Martial status" name="history[martial_status]" class="form-control no-boarder " >
+                                <select id="source" style="width:100%" name="history[martial_status]">
+                                  <option value="">Please select Martial Status</option>
+                                  <option value="Single">Single</option>
+                                  <option value="Married">Married</option>
+                                  <option value="Widow">Widow</option>
+                                </select>
                               </div>
                               <div class="col-md-4">
                                 <input type="number" placeholder="Year" name="history[year]" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
-                                <input type="number" placeholder="Number of childrens" name="history[childrens_numbers]" class="form-control no-boarder " >
+                                <select id="source" style="width:100%" name="history[childrens_numbers]">
+                                  <option value="">Please Number of Childrens</option>
+                                  <option value="One">One</option>
+                                  <option value="Two">Two</option>
+                                  <option value="Three">Three</option>
+                                  <option value="Four">Four</option>
+                                  <option value="Five">Five</option>
+                                  <option value="Six">Six</option>
+                                  <option value="Seven">Seven</option>
+                                  <option value="Eight">Eight</option>
+                                </select>
                               </div>
                               <div class="col-md-4" class="form-control no-boarder"  placeholder="profession" >
                                 <select  style="width:100%" name="history[over_weight]">
@@ -268,7 +283,19 @@
                                 </select>
                               </div>
                                <div class="col-md-4"  id="smoking" >
-                                <input type="number" placeholder="Quantity of smoking" name="history[smoking]" class="form-control no-boarder " >
+                                <select  id="smoke" style="width:100%" name="history[smoking]">
+                                  <option value="">Quantity of smoking</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                </select>
                               </div>
                               <div class="col-md-4">
                                 <select style="width:100%" name="history[alcoholic_drink]">

@@ -75,7 +75,7 @@
                           <tr>
                             <td style="font-weight: bold;">Lower Waist</td>
                             <td>{{$last_visit->lower_waist}} inches</td>
-                            <td style="font-weight: bold;">Total Inches</td>
+                            <td style="font-weight: bold;">Total Inches Reduced</td>
                             <td>{{$last_visit->total_inches}} inches</td>
                           </tr>
                           
@@ -184,14 +184,25 @@
                               <input name="lower_waist" id="lower_waist" type="number" class="form-control" placeholder="inches"  required="">
                             </div>
                             <div class="col-md-4" >
-                              <label>Total Inches</label>
-                              <input name="total_inches"  id="total_inches" type="number" class="form-control" placeholder="inches"  required="">
+                              <label>Total Inches For Today</label>
+                              <input name="total_inches"  id="total_inches" readonly="" type="number" class="form-control" placeholder="inches"  required="">
+                            </div>
+                            <div class="col-md-4" style="display: none">
+                              <label>Inches Reduced</label>
+                              <input  type="hidden"  id="reduced_inches" readonly="" value="{{$last_visit->total_inches}}" type="number" class="form-control" placeholder="inches"  required="">
+                            </div>
+                            <div class="col-md-4" >
+                              <label>Inches Reduced</label>
+                              <input  type="number"  id="reduced" readonly=""  type="number" class="form-control" placeholder="inches"  required="">
                             </div>
                           </div>
                           <div class="col-md-6">
                               <label>Package</label>
                               <select name="package" required="">
                                 <option value="">Select package</option>
+                                @for($i=1;$i<=12;$i++)
+                                <option value="{{$i}} month">{{$i}} month</option>
+                                @endfor
                                 <option value="BMR">BMR</option>
                                 <option value="15 days package">15 days package</option>
                                 <option value="Continue">Continue</option>
@@ -277,7 +288,7 @@
                   </div>
                 </div>
                 <div class="grid-body ">
-                  <table class="table" id="example3">
+                  <table class="table" id="ufc_table">
                     <thead>
                       <tr>
                         <th>Date of visit</th>
@@ -359,11 +370,13 @@
         thighs=$('#thighs').val();
         arms=$('#arms').val();
         lower_waist=$('#lower_waist').val();
+        reduced_incehs=$('#reduced_inches').val();
         sum= +neck +  +chest;
         sum= +side_buns + +waist + +sum;
         sum= +hips + +thighs + +arms + +lower_waist + +sum;
-        
+        reduced= +reduced_incehs - +sum;
         $('#total_inches').val(sum);
+        $('#reduced').val(reduced);
       });
     </script>
     <script type="text/javascript">
