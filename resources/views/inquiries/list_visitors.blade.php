@@ -34,7 +34,7 @@
                         {{ session('status') }}
                     </div>
                   @endif
-                  <table class="table table-hover table-condensed" id="example">
+                  <table class="table table-hover table-condensed" id="ufc_table">
                     <thead>
                       <tr>
                         <th style="width:1%">

@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <div class="grid simple form-grid">
                 <div class="grid-title no-border">
-                  <h4>Monitoring<span class="semi-bold"> Detail  For <span style="color:#E75480;font-weight: bold"><?php echo ' '.$name;?></span></span></h4>
+                  <h4>Female Monitoring<span class="semi-bold"> Detail  For <span style="color:#E75480;font-weight: bold"><?php echo ' '.$name;?></span></span></h4>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
                     <a href="#grid-config" data-toggle="modal" class="config"></a>
