@@ -64,6 +64,10 @@
 </div>
 @endsection
 @section('customScripts')
+<<<<<<< HEAD
+<script type="text/javascript">
+  $(function(){
+=======
 <script src="{{url('/')}}/js/highcharts.js"></script>
 <script src="{{url('/')}}/js/exporting.js"></script>
 <script type="text/javascript">
@@ -111,6 +115,7 @@
     });
 });
 
+>>>>>>> 9907cb002dc06cd570a71f8e7dbf5d63f971b0ea
     $("#reporting_table").DataTable({
       initComplete: function () {
         this.api().columns('._month').every( function () {
