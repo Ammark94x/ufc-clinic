@@ -12,4 +12,10 @@ class reportingController extends Controller
     	$customers = User::whereNull('role')->get();
     	return view('admin.customer_reports',['data'=>$customers]);
     }
+
+    public function customer_api()
+    {
+    	$customers = User::whereNull('role')->get();
+    	return response()->json($customers);
+    }
 }
