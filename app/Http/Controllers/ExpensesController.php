@@ -17,11 +17,7 @@ class ExpensesController extends Controller
 
     public function add_utility()
     {
-<<<<<<< HEAD
-    	return view('admin.add_utiity');
-=======
     	return view('admin.add_utility');
->>>>>>> 9907cb002dc06cd570a71f8e7dbf5d63f971b0ea
     }
 
     public function store_utility(Request $request)
