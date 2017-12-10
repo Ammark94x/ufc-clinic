@@ -169,5 +169,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/expenses/{id}/delete',['as'=>'deleteExpense','uses'=>'ExpensesController@destroy']);
 
+	/*****************ADMIN REPORTING SECTION START******************/
+	Route::get('/reporting/customers',['as'=>'','uses'=>'reportingController@customers']);
 
 });
