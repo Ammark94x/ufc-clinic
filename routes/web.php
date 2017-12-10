@@ -149,4 +149,25 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/monthlyReport', ['as' => 'monthlyReport',  'uses' => 'AccountController@monthlyReport']);
 	Route::get('/new_customerReport', ['as' => 'new_customerReport',  'uses' => 'AccountController@new_customerReport']);
 
+	/*****************EXPENSES SECTION START******************/
+	Route::get('/expenses/utility',['as'=>'showUtility','uses'=>'ExpensesController@utility']);
+	Route::get('/expenses/utility/create',['as'=>'createUtility','uses'=>'ExpensesController@add_utility']);
+	Route::post('/expenses/utility/store',['as'=>'storeUtility','uses'=>'ExpensesController@store_utility']);
+
+	Route::get('/expenses/printing',['as'=>'showPrinting','uses'=>'ExpensesController@printing_material']);
+	Route::get('/expenses/printing/create',['as'=>'createPrinting','uses'=>'ExpensesController@add_printing']);
+	Route::post('/expenses/printing/store',['as'=>'storePrinting','uses'=>'ExpensesController@store_printing']);
+
+	Route::get('/expenses/marketing',['as'=>'showMarketing','uses'=>'ExpensesController@marketing']);
+	Route::get('/expenses/marketing/create',['as'=>'createMarketing','uses'=>'ExpensesController@add_marketing']);
+	Route::post('/expenses/marketing/store',['as'=>'storeMarketing','uses'=>'ExpensesController@store_marketing']);
+
+	Route::get('/expenses/production',['as'=>'showProduction','uses'=>'ExpensesController@production']);
+	Route::get('/expenses/production/create',['as'=>'createProduction','uses'=>'ExpensesController@add_production']);
+	Route::post('/expenses/production/store',['as'=>'storeProduction','uses'=>'ExpensesController@store_production']);
+
+
+	Route::get('/expenses/{id}/delete',['as'=>'deleteExpense','uses'=>'ExpensesController@destroy']);
+
+
 });
