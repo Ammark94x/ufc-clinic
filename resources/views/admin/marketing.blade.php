@@ -1,15 +1,15 @@
 @extends('templates.backendTemplate')
-@section('title','Add Staff')
+@section('title','Marketing')
 @section('customStyles')
 @endsection
 @section('content')
 <div class="page-title">
-<h3>Staff</h3>
-<a href="{{route('staff.create')}}" class="btn btn-success pull-right">Add Staff</a>
+<h3>Marketing</h3>
+<a href="{{route('createMarketing')}}" class="btn btn-success pull-right">Add Item</a>
 </div>
 <div class="grid simple">
     <div class="grid-title no-border">
-      <h4>Staff List</h4>      
+      <h4>Marketing List</h4>      
       <div class="tools">
         <a href="javascript:;" class="collapse"></a>
       </div>
@@ -18,19 +18,19 @@
       <table class="table" id="ufc_table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>Item</th>
+            <th>Month</th>
+            <th>Date</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($data as $user)
+          @foreach($data as $value)
           <tr>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
-            <td>{{$user->role}}</td>
-            <td><a href="{{url('staff/'.$user->id.'/delete')}}" class="btn btn-danger btn-xs">Delete</a></td>
+            <td>{{$value->expense}}</td>
+            <td>{{date("M",strtotime($value->date))}}</td>
+            <td>{{$value->amount}}</td>
+            <td><a href="{{route('deleteExpense',$value->id)}}" class="btn btn-danger btn-xs">Delete</a></td>
           </tr>
           @endforeach
         </tbody>

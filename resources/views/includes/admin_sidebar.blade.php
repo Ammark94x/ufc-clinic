@@ -125,8 +125,10 @@
             </li>
             <li class=""> <a href="javascript:void(0)"><i class="material-icons">list</i> <span class="title">Expense</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
-                <li > <a href="{{route('add_visitorSheets')}}" > Utility</a> </li>
-                <li class=""> <a href="{{route('weberSheets')}}">Printing Material</a></li>
+                <li > <a href="{{route('showUtility')}}" > Utilities</a> </li>
+                <li class=""> <a href="{{route('showPrinting')}}">Printing Material</a></li>
+                <li class=""> <a href="{{route('showMarketing')}}">Marketing</a></li>
+                <li class=""> <a href="{{route('showProduction')}}">Production Cost</a></li>
               </a>
               </li>
               </ul>
