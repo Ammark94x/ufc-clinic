@@ -64,8 +64,58 @@
 </div>
 @endsection
 @section('customScripts')
+<<<<<<< HEAD
 <script type="text/javascript">
   $(function(){
+=======
+<script src="{{url('/')}}/js/highcharts.js"></script>
+<script src="{{url('/')}}/js/exporting.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $.getJSON("http://clientdemo.horizontech.biz/mpf.com.pk/v2/api/graph_api", function(json){
+    Highcharts.chart('graph', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Customers'
+        },
+        xAxis: {
+            categories: json.Terms.reverse(),
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'No. of Customers'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Members',
+            data: json.members.reverse()
+
+        }, {
+            name: 'Events',
+            data: json.events.reverse()
+        }]
+    });
+});
+
+>>>>>>> 9907cb002dc06cd570a71f8e7dbf5d63f971b0ea
     $("#reporting_table").DataTable({
       initComplete: function () {
         this.api().columns('._month').every( function () {
