@@ -151,21 +151,21 @@
                           </div>   
                           <div class="col-md-2">
                             <label>Neck</label>
-                            <input name="neck" type="number" min="1" id="neck" type="text" class="form-control" placeholder="inches" required="">
+                            <input name="neck" type="number"  id="neck" type="text" class="form-control" placeholder="inches" required="">
                           </div>
                           <div class="col-md-2">
                             <label>Chest</label>
-                            <input name="chest" type="number" min="1" id="chest" type="text" class="form-control" placeholder="inches" required="">
+                            <input name="chest" type="number"  id="chest" type="text" class="form-control" placeholder="inches" required="">
                           </div>
                         </div>
                         <div class="row form-row">
                           <div class="col-md-2">
                             <label>Side Buns</label>
-                            <input name="side_buns" type="number" id="side_buns" min="1" type="text" class="form-control" placeholder="inches"  required="">
+                            <input name="side_buns" type="number" id="side_buns"  type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-2">
                             <label>Waist</label>
-                            <input name="waist" type="number" id="waist" min="1" type="text" class="form-control" placeholder="inches"  required="">
+                            <input name="waist" type="number" id="waist"  type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-2">
                             <label>Hips</label>
@@ -173,7 +173,7 @@
                           </div>
                           <div class="col-md-2">
                             <label>Theighs</label>
-                            <input name="thighs" type="number" id="thighs" min="1" type="text" class="form-control" placeholder="inches"  required="">
+                            <input name="thighs" type="number" id="thighs"  type="text" class="form-control" placeholder="inches"  required="">
                           </div>
                           <div class="col-md-4" >
                               <label>Arms</label>
@@ -187,10 +187,12 @@
                               <label>Total Inches For Today</label>
                               <input name="total_inches"  id="total_inches" readonly="" type="number" class="form-control" placeholder="inches"  required="">
                             </div>
+                            @if(isset($last_visit->total_inches) && !empty($last_visit->total_inches))
                             <div class="col-md-4" style="display: none">
                               <label>Inches Reduced</label>
                               <input  type="hidden"  id="reduced_inches" readonly="" value="{{$last_visit->total_inches}}" type="number" class="form-control" placeholder="inches"  required="">
                             </div>
+                            @endif
                             <div class="col-md-4" >
                               <label>Inches Reduced</label>
                               <input  type="number"  id="reduced" readonly=""  type="number" class="form-control" placeholder="inches"  required="">

@@ -44,7 +44,7 @@
                           </div>
                         </th>
                         <th style="width:10%">Name</th>
-                        <th style="width:15%" data-hide="phone,tablet">Emails</th>
+                        {{-- <th style="width:15%" data-hide="phone,tablet">Emails</th> --}}
                         <th style="width:6%">Date of visit </th>
                         <th style="width:6%">Mobile </th>
                         <th style="width:6%">Location </th>
@@ -62,7 +62,7 @@
                           </div>
                         </td>
                         <td>{{$val->name}}{{-- <span class="label label-important">ALERT!</span> --}}</td>
-                        <td><span class="muted">{{$val->email}}</span></td>
+                        {{-- <td><span class="muted">{{$val->email}}</span></td> --}}
                         <td><span class="muted">{{ json_decode($val->meta->data,true)['arrival_date']}}</span></td>
                         <td><span class="muted">{{$val->mobile}}</span></td>
                         <td><span class="muted">{{$val->location}}</span></td>
