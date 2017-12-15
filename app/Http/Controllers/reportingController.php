@@ -9,13 +9,21 @@ class reportingController extends Controller
 {
     public function customers()
     {
-    	$customers = User::whereNull('role')->get();
+    	$customers = User::whereNull('role')->get();        
     	return view('admin.customer_reports',['data'=>$customers]);
     }
 
-    public function customer_api()
+    public function customerByYear()
     {
-    	$customers = User::whereNull('role')->get();
-    	return response()->json($customers);
+        $yearsback = date("Y", strtotime("-10 years"));
+        $customers = User::whereNull('role')->whereYear('created_at','<=' ,date("Y"))->whereYear('created_at','>=' ,date("Y"));
+        $years = array_combine(range(date('Y'), date('Y')-10), range(date('Y'), date('Y')-10));
+        $data = [];
+        foreach($years as $year)
+        {
+            $data['years'][] = $year;
+            $data['customers'][] = $customers->whereYear('created_at',$year)->count();
+        }        
+    	return response()->json($data);
     }
 }

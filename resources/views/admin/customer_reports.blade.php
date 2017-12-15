@@ -6,6 +6,7 @@
 <div class="page-title">
 <h3>Customer Reporting</h3>
 </div>
+<div id="graph"></div>
 <div class="row">
   <div class="col-md-4">
     <div class="form-group">
@@ -64,24 +65,20 @@
 </div>
 @endsection
 @section('customScripts')
-<<<<<<< HEAD
-<script type="text/javascript">
-  $(function(){
-=======
 <script src="{{url('/')}}/js/highcharts.js"></script>
 <script src="{{url('/')}}/js/exporting.js"></script>
 <script type="text/javascript">
   $(function(){
-    $.getJSON("http://clientdemo.horizontech.biz/mpf.com.pk/v2/api/graph_api", function(json){
+    $.getJSON("{{route('customerByYear')}}", function(json){
     Highcharts.chart('graph', {
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Customers'
+            text: 'Yearly Customers'
         },
         xAxis: {
-            categories: json.Terms.reverse(),
+            categories: json.years.reverse(),
             crosshair: true
         },
         yAxis: {
@@ -105,17 +102,12 @@
             }
         },
         series: [{
-            name: 'Members',
-            data: json.members.reverse()
+            name: 'Customers',
+            data: json.customers.reverse()
 
-        }, {
-            name: 'Events',
-            data: json.events.reverse()
         }]
     });
 });
-
->>>>>>> 9907cb002dc06cd570a71f8e7dbf5d63f971b0ea
     $("#reporting_table").DataTable({
       initComplete: function () {
         this.api().columns('._month').every( function () {
