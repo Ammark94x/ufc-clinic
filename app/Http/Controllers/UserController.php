@@ -62,19 +62,19 @@ class UserController extends Controller
             'history'=>$history,
             'measurment'=>$measurment
         ]);
-        // $username = "923313960846";
-        // $password = "7836";
-        // $mobile = $user['mobile'];
-        // $sender = "UFC";
-        // $message = "Welcome ".$user['name']." to Ultimate Fitness Clinic! Your username is ".$user['email']." and password is ".$pass;
-        // $url = "http://sendpk.com/api/sms.php?username=".$username."&password=".$password."&mobile=".$mobile."&sender=".urlencode($sender)."&message=".urlencode($message)."";
-        // $ch = curl_init();
-        // $timeout = 30;
-        // curl_setopt($ch,CURLOPT_URL,$url);
-        // curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        // curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
-        // $responce = curl_exec($ch);
-        // curl_close($ch);
+        $username = "923025557774";
+        $password = "1876";
+        $mobile = $user['mobile'];
+        $sender = "UFC";
+        $message = "Welcome ".$user['name']." to Ultimate Fitness Clinic! Your username is ".$user['email']." and password is ".$pass;
+        $url = "http://sendpk.com/api/sms.php?username=".$username."&password=".$password."&mobile=".$mobile."&sender=".urlencode($sender)."&message=".urlencode($message)."";
+        $ch = curl_init();
+        $timeout = 30;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+        $responce = curl_exec($ch);
+        curl_close($ch);
         /*Print Responce*/
         return redirect()->route('monitorClient', ['id' => $last_user['id']]);
     }
@@ -135,6 +135,20 @@ class UserController extends Controller
     /*storing reception clietn data*/
     public function addReceptionClient(Request $request){
         reception::create($_POST);
+        $username = "923025557774";
+        $password = "1876";
+        $mobile = $request->phone_number;
+        $sender = "UFC";
+        $message = "Welcome ".$request->name." to Ultimate Fitness Clinic!";
+        $url = "http://sendpk.com/api/sms.php?username=".$username."&password=".$password."&mobile=".$mobile."&sender=".urlencode($sender)."&message=".urlencode($message)."";
+        $ch = curl_init();
+        $timeout = 30;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+        $responce = curl_exec($ch);
+        curl_close($ch);
+        
         return redirect()->back()->with('status', 'Client Added Successfully !!');
     }
 
