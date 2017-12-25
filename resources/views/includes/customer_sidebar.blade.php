@@ -19,7 +19,7 @@
             </li>
             <li class="   "> <a href="#"><i class="material-icons">home</i> <span class="title">Reporting</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
-                <li > <a href="#" > History</a> </li>
+                <li > <a href="{{route('clientHistory')}}" > History</a> </li>
                 <li class=""> <a href="#"> My Accounts <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
               </ul>
           </ul>

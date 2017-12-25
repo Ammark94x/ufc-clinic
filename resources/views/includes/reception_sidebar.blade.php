@@ -82,10 +82,21 @@
             </li>
 
              <li>
-              <li class="   "> <a href="index.html"><i class="material-icons">list</i> <span class="title">Weber Sheet</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <li class=""> <a href=""><i class="material-icons">list</i> <span class="title">Weber Sheet</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
                 <li > <a href="{{route('add_visitorSheets')}}" > Add Visitor Sheets</a> </li>
                 <li class=""> <a href="{{route('weberSheets')}}">Weber Sheets <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
+                <li> {{-- <span class=" badge badge-disable pull-right ">203</span --}}
+              </a>
+              </li>
+              </ul>
+            </li>
+
+            <li>
+              <li class=""> <a href=""><i class="material-icons">list</i> <span class="title">Daily Expense</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
+              <ul class="sub-menu">
+                <li > <a href="{{route('add_visitorSheets')}}" > Add Expense</a> </li>
+                <li class=""> <a href="{{route('weberSheets')}}">Show Expenses <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
                 <li> {{-- <span class=" badge badge-disable pull-right ">203</span --}}
               </a>
               </li>

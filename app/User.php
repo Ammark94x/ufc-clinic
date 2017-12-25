@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function meta(){
         return $this->hasOne('App\UserMeta','user_id','id');
     }
+
+    public function monitor(){
+        return $this->hasMany('App\monitor','user_id');
+    }
 }

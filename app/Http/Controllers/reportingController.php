@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class reportingController extends Controller
 {
@@ -25,5 +26,24 @@ class reportingController extends Controller
             $data['customers'][] = $customers->whereYear('created_at',$year)->count();
         }        
     	return response()->json($data);
+    }
+
+    public function customHistoryPage()
+    {
+        return view('clients.customer_reports');
+    }
+
+    public function customerhistory()
+    {
+        $data = [];
+        if(isset(Auth::user()->monitor)) 
+        {
+            foreach(Auth::user()->monitor as $value)
+            {
+                $data['dates'][] = date('d/M/Y',strtotime($value->dov));
+                $data['weight'][] = $value->weight;
+            }           
+        }
+        return response()->json($data);
     }
 }

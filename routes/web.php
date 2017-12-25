@@ -172,4 +172,8 @@ Route::group(['middleware' => 'auth'], function () {
 	/*****************ADMIN REPORTING SECTION START******************/
 	Route::get('/reporting/customers',['as'=>'customerReport','uses'=>'reportingController@customers']);
 
+	Route::get('/api/history',['as'=>'customerHistory','uses'=>'reportingController@customerhistory']);
+	/*****************ADMIN REPORTING SECTION START******************/
+	Route::get('/history',['as'=>'clientHistory','uses'=>'reportingController@customHistoryPage']);
+
 });
