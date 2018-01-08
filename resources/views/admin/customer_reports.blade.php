@@ -6,9 +6,15 @@
 <div class="page-title">
 <h3>Customer Reporting</h3>
 </div>
-<div id="graph"></div>
+<select class="form-control" id="graph-select">
+      <option value="monthlygraph">By Month</option>
+      <option value="yearlygraph">By Year</option>
+    </select>
+<div id="monthlygraph"></div>
+<div id="yearlygraph" style="display: none"></div>
+<hr>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4">    
     <div class="form-group">
       <select class="filter_month form-control">
         <option value="">By Month</option>
@@ -68,9 +74,9 @@
 <script src="{{url('/')}}/js/highcharts.js"></script>
 <script src="{{url('/')}}/js/exporting.js"></script>
 <script type="text/javascript">
-  $(function(){
+  $(function(){    
     $.getJSON("{{route('customerByYear')}}", function(json){
-    Highcharts.chart('graph', {
+    Highcharts.chart('yearlygraph', {
         chart: {
             type: 'column'
         },
@@ -108,6 +114,57 @@
         }]
     });
 });
+      $.getJSON("{{route('customerByMonth')}}", function(json){
+    Highcharts.chart('monthlygraph', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monthly Customers'
+        },
+        xAxis: {
+            categories: json.months.reverse(),
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'No. of Customers'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Customers',
+            data: json.customers.reverse()
+
+        }]
+    });
+  });
+    $(document).on('change','#graph-select',function(){
+      if($(this).val()=="monthlygraph") {
+        $("#monthlygraph").show(300);
+      } else {
+        $("#monthlygraph").hide(300);
+      }
+      if($(this).val()=="yearlygraph") {
+        $("#yearlygraph").show(300);
+      } else {
+        $("#yearlygraph").hide(300);
+      }
+    });
     $("#reporting_table").DataTable({
       initComplete: function () {
         this.api().columns('._month').every( function () {

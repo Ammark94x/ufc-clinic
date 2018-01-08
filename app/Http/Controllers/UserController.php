@@ -18,13 +18,23 @@ class UserController extends Controller
 {
     /*check user credentials*/
     public function check_auth(Request $request){
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if(filter_var($request->user, FILTER_VALIDATE_EMAIL)) {
+            if (Auth::attempt(['email' => $request->user, 'password' => $request->password])) {
                 return redirect('/');
             }
             else
             {
                 return redirect()->back()->with('status', 'Invalid email or password!');
             }
+        } else {
+            if (Auth::attempt(['mobile' => $request->user, 'password' => $request->password])) {
+                return redirect('/');
+            }
+            else
+            {
+                return redirect()->back()->with('status', 'Invalid number or password!');
+            }
+        }
     }
 
     /*logout function*/

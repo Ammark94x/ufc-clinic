@@ -46,8 +46,8 @@
                 </div>
               @endif
               <div class="form-group col-md-10">
-                <label class="form-label">Email</label>
-                <input class="form-control" id="txtusername" name="email" type="email" required>
+                <label class="form-label">Email / Phone</label>
+                <input class="form-control" id="txtusername" name="user" type="text" required>
               </div>
             </div>
             

@@ -28,6 +28,20 @@ class reportingController extends Controller
     	return response()->json($data);
     }
 
+    public function customerByMonth()
+    {
+        $yearsback = date("Y", strtotime("-1 year"));
+        $customers = User::whereNull('role')->whereMonth('created_at','<=' ,date("m"))->whereMonth('created_at','>=' ,date("m"));
+        $months = array_combine(range(date('m'), date('m')-10), range(date('m'), date('m')-10));
+        $data = [];
+        foreach($months as $month)
+        {
+            $data['months'][] = $month;
+            $data['customers'][] = $customers->whereMonth('created_at',$month)->count();
+        }
+        return response()->json($data);
+    }
+
     public function customHistoryPage()
     {
         return view('clients.customer_reports');
