@@ -24,6 +24,7 @@
               <ul class="sub-menu">
                 <li > <a href="{{route('register')}}" > Register client</a> </li>
                 <li class=""> <a href="{{route('clientList')}}"> Clients  <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
+                <li class=""> <a href="{{route('nextVisits')}}"> Next Visits  <span class=" label label-info pull-right m-r-30">NEW</span></a></li>
               </ul>
             </li>
              <li class=""> <a href="javascript:void(0)"><i class="material-icons">home</i> <span class="title">Reception</span> <span class="selected"></span> <span class="arrow  open "></span> </a>

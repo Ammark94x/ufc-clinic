@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
 	/***ROUTES FOR Clients*/
 	Route::get('/RegisterClient', ['as' => 'register',  'uses' => 'UserController@registerClient_v']);/*view*/
 	Route::get('/clientList', ['as' => 'clientList',  'uses' => 'UserController@clientList']);/*listing*/
+	Route::get('/next-visit', ['as' => 'nextVisits',  'uses' => 'UserController@nextVisits']);/*listing*/
+	Route::get('/notify-visits', ['as' => 'notifyVisits',  'uses' => 'UserController@notifyNextVisits']);/*listing*/
 	/***ROUTES ENDS*/
 
 	/***ROUTES FOR RECEPTION*/

@@ -12,6 +12,7 @@ use App\cities;
 use App\reception;
 use App\storekeeper;
 use App\monitor;
+use App\NextVisits;
 use Hash;
 
 class UserController extends Controller
@@ -56,7 +57,8 @@ class UserController extends Controller
 
     /*Storing register client data*/
     public function store(Request $request)
-    {      
+    {   
+        $next_visit = $request->data['next_visit'];
         $user = $request->except('data','history','measurment');
         $user['type'] = 1;     
         $data = json_encode($request['data']);
@@ -71,6 +73,10 @@ class UserController extends Controller
             'data'=>$data,
             'history'=>$history,
             'measurment'=>$measurment
+        ]);
+        NextVisits::create([
+            'user_id'=>$last_user['id'],
+            'date'=>$next_visit,
         ]);
         $username = "923025557774";
         $password = "1876";
@@ -189,6 +195,54 @@ class UserController extends Controller
      public function deleteReceptionClient($id){
         reception::where('id','=', $id)->delete();
         return redirect()->back()->with('status', 'Client deleted Successfully !!');
+    }
+
+    public function nextVisits(){
+        $data = [];
+        $visits = NextVisits::get();
+        $today = date('m/d/Y');
+        //return $today;
+        foreach($visits as $value) {
+            $newdate = strtotime ( '-1 day' , strtotime ( $value->date ) ) ;
+            $newdate = date ( 'm/d/Y' , $newdate );
+            if($today==$newdate) {
+                $data[] = $value;
+            }
+        }
+        return view('admin.nextVisits',['data'=>$data]);
+    }
+
+    public function notifyNextVisits(){
+        $data = [];
+        $visits = NextVisits::get();
+        $today = date('m/d/Y');
+        //return $today;
+        foreach($visits as $value) {
+            $newdate = strtotime ( '-1 day' , strtotime ( $value->date ) ) ;
+            $newdate = date ( 'm/d/Y' , $newdate );
+            if($today==$newdate) {
+                $data[] = ['name'=>User::find($value->user_id)['name'],'mobile'=>User::find($value->user_id)['mobile']];
+            }
+
+            if(!empty($data)) {
+                foreach($data as $val) {
+                    $username = "923025557774";
+                    $password = "1876";
+                    $mobile = $val['mobile'];
+                    $sender = "UFC";
+                    $message = "Dear ".$val['name']."! You have an appointment of Tomorrow at Ultimate Fitness Cilinic. Thanks";
+                    $url = "http://sendpk.com/api/sms.php?username=".$username."&password=".$password."&mobile=".$mobile."&sender=".urlencode($sender)."&message=".urlencode($message)."";
+                    $ch = curl_init();
+                    $timeout = 30;
+                    curl_setopt($ch,CURLOPT_URL,$url);
+                    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+                    $responce = curl_exec($ch);
+                    curl_close($ch);
+                }
+            }
+        }
+        return "success";
     }
 
     
