@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Expenses;
+use App\tcs_delivery;
+use App\monitor;
 use Auth;
 
 class reportingController extends Controller
@@ -30,7 +33,7 @@ class reportingController extends Controller
 
     public function customerByMonth()
     {
-        $yearsback = date("Y", strtotime("-1 year"));
+        $yearsback = date("M", strtotime("-1 year"));
         $customers = User::whereNull('role')->whereMonth('created_at','<=' ,date("m"))->whereMonth('created_at','>=' ,date("m"));
         $months = array_combine(range(date('m'), date('m')-10), range(date('m'), date('m')-10));
         $data = [];
@@ -40,6 +43,25 @@ class reportingController extends Controller
             $data['customers'][] = $customers->whereMonth('created_at',$month)->count();
         }
         return response()->json($data);
+    }
+
+    public function expenses()
+    {
+        return view('admin.expenses_reports');
+    }
+
+    public function monthlyExpenses()
+    {   
+
+        $months = array_combine(range(date('m'), date('m',strtotime('-1 year'))), range(date('m'), date('m',strtotime('-1 year'))));
+        $data = [];
+        foreach($months as $month) {
+            $data['months'][] = \DateTime::createFromFormat('!m', $month)->format('F');
+            $data['Expenses'][] = 0 + Expenses::whereMonth('date',$month)->whereYear('date',date('Y'))->sum('amount') + tcs_delivery::whereMonth('date',$month)->whereYear('date',date('Y'))->sum('amount');
+            $data['Profit'][] = monitor::whereMonth('created_at',$month)->whereYear('created_at',date('Y'))->sum('full_payment');
+        }
+        return response()->json($data);
+
     }
 
     public function customHistoryPage()

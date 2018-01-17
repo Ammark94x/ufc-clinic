@@ -97,6 +97,7 @@
                <li class=""> <a href="#"><i class="material-icons">list</i> <span class="title">Reporting</span> <span class="selected"></span> <span class="arrow  open "></span> </a>
               <ul class="sub-menu">
                 <li class=""> <a href="{{route('customerReport')}}"> Customers Report</a></li>
+                <li class=""> <a href="{{route('customerExpenses')}}"> Expenses Report</a></li>
                 {{-- <li class=""> <a href="{{route('packageReport')}}">Package Report </a></li>
                 <li class=""> <a href="{{route('tcsReport')}}">TCS Delivery Report </a></li>
                 <li class=""> <a href="{{route('monthlyReport')}}">Monthly Earning Report </a></li>

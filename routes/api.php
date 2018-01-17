@@ -18,3 +18,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 Route::get('/customers-by-year',['as'=>'customerByYear','uses'=>'reportingController@customerByYear']);
 Route::get('/customers-by-month',['as'=>'customerByMonth','uses'=>'reportingController@customerByMonth']);
+
+Route::get('/expenses-by-month',['as'=>'expensesByMonth','uses'=>'reportingController@monthlyExpenses']);
