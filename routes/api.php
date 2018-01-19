@@ -20,3 +20,4 @@ Route::get('/customers-by-year',['as'=>'customerByYear','uses'=>'reportingContro
 Route::get('/customers-by-month',['as'=>'customerByMonth','uses'=>'reportingController@customerByMonth']);
 
 Route::get('/expenses-by-month',['as'=>'expensesByMonth','uses'=>'reportingController@monthlyExpenses']);
+Route::get('/expenses-by-year',['as'=>'expensesByYear','uses'=>'reportingController@yearlyExpenses']);

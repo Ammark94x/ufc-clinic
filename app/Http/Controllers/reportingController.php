@@ -57,8 +57,20 @@ class reportingController extends Controller
         $data = [];
         foreach($months as $month) {
             $data['months'][] = \DateTime::createFromFormat('!m', $month)->format('F');
-            $data['Expenses'][] = 0 + Expenses::whereMonth('date',$month)->whereYear('date',date('Y'))->sum('amount') + tcs_delivery::whereMonth('date',$month)->whereYear('date',date('Y'))->sum('amount');
-            $data['Profit'][] = monitor::whereMonth('created_at',$month)->whereYear('created_at',date('Y'))->sum('full_payment');
+            $data['Expenses'][] = 0 + Expenses::whereMonth('date',$month)->whereYear('date',date('Y'))->sum('amount');
+            $data['Profit'][] = monitor::whereMonth('created_at',$month)->whereYear('created_at',date('Y'))->sum('full_payment') + tcs_delivery::whereMonth('date',$month)->whereYear('date',date('Y'))->sum('amount') + 0;
+        }
+        return response()->json($data);
+
+    }
+    public function yearlyExpenses()
+    {   
+        $years = array_combine(range(date('Y'), date('Y')-10), range(date('Y'), date('Y')-10));
+        $data = [];
+        foreach($years as $year) {
+            $data['years'][] = $year;
+            $data['Expenses'][] = 0 + Expenses::whereYear('date',$year)->sum('amount');
+            $data['Profit'][] = monitor::whereYear('created_at',$year)->sum('full_payment') + tcs_delivery::whereYear('date',$year)->sum('amount') + 0;
         }
         return response()->json($data);
 

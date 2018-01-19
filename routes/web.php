@@ -17,7 +17,7 @@ Route::get('/login', function () {
 });
 Route::post('/userLogin', ['as' => 'validate_login',  'uses' => 'UserController@check_auth']);
 Route::get('/logout', ['as' => 'logout',  'uses' => 'UserController@logout']);
-
+Route::get('/notify-visits', ['as' => 'notifyVisits',  'uses' => 'UserController@notifyNextVisits']);
 //Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/RegisterClient', ['as' => 'register',  'uses' => 'UserController@registerClient_v']);/*view*/
 	Route::get('/clientList', ['as' => 'clientList',  'uses' => 'UserController@clientList']);/*listing*/
 	Route::get('/next-visit', ['as' => 'nextVisits',  'uses' => 'UserController@nextVisits']);/*listing*/
-	Route::get('/notify-visits', ['as' => 'notifyVisits',  'uses' => 'UserController@notifyNextVisits']);/*listing*/
+	/*listing*/
 	/***ROUTES ENDS*/
 
 	/***ROUTES FOR RECEPTION*/
