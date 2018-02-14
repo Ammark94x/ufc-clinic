@@ -1,3 +1,14 @@
+@extends('templates.backendTemplate')
+@section('title')
+  Female Monitor Client
+@endsection
+@section('customStyles')
+    <link href="{{URL('/')}}/backend/assets/plugins/jquery-datatable/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="{{URL('/')}}/backend/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{URL('/')}}/backend/assets/plugins/bootstrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{URL('/')}}/backend/assets/plugins/bootstrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+@endsection
+@section('content')
 <?php 
  /* echo "<pre>";
   var_dump($monitor_user);die;*/
@@ -339,3 +350,46 @@
               </div>
             </div>
           </div>  
+@endsection
+@section('customScripts')
+<script src="{{URL('/')}}/backend/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="{{URL('/')}}/backend/assets/plugins/jquery-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="{{URL('/')}}/backend/assets/plugins/jquery-datatable/extra/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{URL('/')}}/backend/assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+    <script type="text/javascript" src="{{URL('/')}}/backend/assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+    <script src="{{URL('/')}}/backend/assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+    <script src="{{URL('/')}}/backend/assets/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).on('click','.clone_it',function (){
+        $('#clone_div').clone().appendTo('#cloned_div');
+      });
+      $("input").on('keyup',function(){
+        neck=$('#neck').val();
+        chest=$('#chest').val();
+        side_buns=$('#side_buns').val();
+        waist=$('#waist').val();
+        hips=$('#hips').val();
+        thighs=$('#thighs').val();
+        arms=$('#arms').val();
+        lower_waist=$('#lower_waist').val();
+        reduced_incehs=$('#reduced_inches').val();
+        sum= +neck +  +chest;
+        sum= +side_buns + +waist + +sum;
+        sum= +hips + +thighs + +arms + +lower_waist + +sum;
+        reduced= +reduced_incehs - +sum;
+        $('#total_inches').val(sum);
+        $('#reduced').val(reduced);
+      });
+    </script>
+    <script type="text/javascript">
+      $('#payment_recieved,#full_payment').on('keyup',function(){
+         full_payment=$('#full_payment').val();
+        payment_recieved=$('#payment_recieved').val();
+        balance=+full_payment - +payment_recieved;
+        $('#balance').val(balance);
+      });
+    </script>
+    <!-- END PAGE LEVEL JS INIT -->
+    {{-- <script src="{{URL('/')}}/backend/assets/js/datatables.js" type="text/javascript"></script> --}}
+
+@stop 
