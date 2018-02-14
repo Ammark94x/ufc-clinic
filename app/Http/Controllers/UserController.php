@@ -13,6 +13,7 @@ use App\reception;
 use App\storekeeper;
 use App\monitor;
 use App\NextVisits;
+use App\product;
 use Hash;
 
 class UserController extends Controller
@@ -105,10 +106,40 @@ class UserController extends Controller
     public function editClient($id){
         $cities=cities::get();
         $data=UserMeta::where('user_id', '=', $id)->get();
-        $user=User::where('id', '=', $id)->get();
+        $user_data=User::where('id', '=', $id)->first();
         $data=json_decode($data, true);
         $user_id=$id;
-        return view('admin.updateClient',compact('data','user','user_id','cities'));
+        $user=User::where('id',$id)->get();
+        $products=product::get();
+        $products=json_decode($products);
+        $user=json_decode($user);
+        $gender=$user[0]->gender;
+        if($gender == 'male'){
+            $monitor_user=monitor::orderBy('id', 'DESC')->where([
+            ['user_id', '=', $id],
+            ['gender', '=', 'male']
+            ])->get();
+            $last_visit=monitor::orderBy('id', 'desc')->where([['gender', '=', 'male'],['user_id', '=', $id]])->first();
+            if(isset($last_visit->products)){
+                $given_products=explode(',',$last_visit->products);
+                $given_product=product::whereIn('id',$given_products)->select('item_name')->get();
+            }
+            
+             return view('admin.updateClient',compact('data','user_data','user_id','cities','user','user','products','monitor_user','last_visit','given_product'));        
+        }else{
+            $monitor_user=monitor::orderBy('id', 'DESC')->where([
+            ['user_id', '=', $id],
+            ['gender', '=', 'female']
+            ])->get();
+            $last_visit=monitor::orderBy('id', 'desc')->where([['gender', '=', 'female'],['user_id', '=', $id]])->first();
+            if(isset($last_visit->products)){
+                $given_products=explode(',',$last_visit->products);
+                $given_product=product::whereIn('id',$given_products)->select('item_name')->get();
+            }
+            return view('admin.updateClient',compact('data','user_data','user_id','cities','user','products','last_visit','monitor_user','given_product'));
+            
+        }
+        
     }
     
     /*Update client*/

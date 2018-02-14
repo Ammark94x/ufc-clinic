@@ -39,6 +39,8 @@
                 </div>
                 <div class="grid-body ">
                   <div class="row">
+                    <form class="form-no-horizontal-spacing" name="male_monitorForm" action="{{route('storeMonitor')}}" id="male_monitorForm" method="post">{{csrf_field()}}</form>
+                          
                     <form id="commentForm" method="POST" action="{{route('updateClient')}}">
                       {{csrf_field()}}
                       @foreach($data as $key => $val)
@@ -51,11 +53,17 @@
                             <li data-target="#step2" class="">
                               <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Medical History form</span> </a>
                             </li>
+                            @if($user_data['gender'] == 'male')
                             <li data-target="#step3" class="">
-                              <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Monitor</span> </a>
+                              <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Monitor Male</span> </a>
                             </li>
+                            @else
                             <li data-target="#step4" class="">
-                              <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Today's Monitoring Detail</span> </a>
+                              <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Monitoring Female</span> </a>
+                            </li>
+                            @endif
+                            <li data-target="#step5" class="">
+                              <a href="#tab5" data-toggle="tab"> <span class="step">4</span> <span class="title">Today's Monitoring Detail</span> </a>
                             </li>
                           </ul>
                           <div class="clearfix"></div>
@@ -103,28 +111,28 @@
                               <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                             </div>
                               </div>
-                              @foreach($user as $user => $user_data)
+                              
                               <div class="col-md-4">
                                 <label>Name</label>
-                                <input type="text" placeholder="Name" name="name"   value="{{$user_data->name}}" class="form-control no-boarder " id="txtLastName" required>
+                                <input type="text" placeholder="Name" name="name"   value="{{$user_data['name']}}" class="form-control no-boarder " id="txtLastName" required>
                               </div>
                               <div class="col-md-4">
                                 <label>Father name/Guardian name</label>
-                                <input type="text" placeholder="Father's/ Husband Name" name="f_name"  value="{{$user_data->f_name}}" class="form-control no-boarder " id="txtLastName">
+                                <input type="text" placeholder="Father's/ Husband Name" name="f_name"  value="{{$user_data['f_name']}}" class="form-control no-boarder " id="txtLastName">
                               </div>
                               <div class="col-md-4">
                                 <label>Residential or office address</label>
-                                <input type="text" placeholder="Residential or Office Address"  value="{{$user_data->address}}" class="form-control no-boarder " name="address" id="txtLastName">
+                                <input type="text" placeholder="Residential or Office Address"  value="{{$user_data['address']}}" class="form-control no-boarder " name="address" id="txtLastName">
                               </div>
                               <div class="col-md-4">
                                 <label>Residential ptcl number</label>
-                                <input type="number" placeholder="Residential PTCL Number" name="res_phone"  value="{{$user_data->res_phone}}" class="form-control no-boarder " >
+                                <input type="number" placeholder="Residential PTCL Number" name="res_phone"  value="{{$user_data['res_phone']}}" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
                                 <select id="source" style="width:100%" name="location">
                                   <option value="">select city</option>
                                   @foreach($cities as $vall => $city)
-                                  @if($user_data->location == $city->city )
+                                  @if($user_data['location'] == $city->city )
                                   <option value="{{$city->city}}" selected="">{{$city->city}}</option>
                                   @else
                                   <option value="{{$city->city}}" >{{$city->city}}</option>
@@ -134,24 +142,24 @@
                               </div>
                               <div class="col-md-4">
                                 <label>Office ptcl number</label>
-                                <input type="number" placeholder="Office PTCL Number" name="office_phone"  value="{{$user_data->office_phone}}" class="form-control no-boarder " >
+                                <input type="number" placeholder="Office PTCL Number" name="office_phone"  value="{{$user_data['office_phone']}}" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
                                 <label>Mobile</label>
-                                <input type="text" placeholder="Mobile Number Ex:9231245678" name="mobile"  value="{{$user_data->mobile}}" class="form-control no-boarder " required>
+                                <input type="text" placeholder="Mobile Number Ex:9231245678" name="mobile"  value="{{$user_data['mobile']}}" class="form-control no-boarder " required>
                               </div>
                               <div class="col-md-4">
                                 <label>Age</label>
-                                <input type="number" placeholder="Age" name="age"  value="{{$user_data->age}}" class="form-control no-boarder " >
+                                <input type="number" placeholder="Age" name="age"  value="{{$user_data['age']}}" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
                                 <label>Email</label>
-                                <input type="email" placeholder="Email" name="email" required  value="{{$user_data->email}}" class="form-control no-boarder " >
+                                <input type="email" placeholder="Email" name="email" required  value="{{$user_data['email']}}" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
                                 <label>Gender</label>
                                 <div class="radio">
-                                  @if($user_data->gender == 'male')
+                                  @if($user_data['gender'] == 'male')
                                     <input id="male" type="radio" name="gender" value="male" checked="checked">
                                     <label for="male">Male</label>
                                     <input id="female" type="radio" name="gender" value="female">
@@ -164,7 +172,7 @@
                                   @endif
                                 </div>
                               </div>
-                              @endforeach
+                              
                               <div class="col-md-2">
                                 <label>Height fit</label>
                                 <input type="number" placeholder="height fit" name="data[height]" value="{{json_decode($data[$key]['data'])->height}}" class="form-control no-boarder " >
@@ -538,12 +546,34 @@
                               </div>
                             </div>
                           </div>
+                          @if($user_data['gender'] == 'male')
                           <div class="tab-pane" id="tab3">
                             <br>
-                            <h4 class="semi-bold">Step 3 - <span class="light">Monitor</span></h4>
+                            <h4 class="semi-bold">Step 3 - <span class="light">Monitor Male</span></h4>
+                            <br>
+                            {{-- Monitor Male Info --}}
+                            <?php 
+                                  if(isset($user) && !empty($user)){
+                                    $gender=$user[0]->gender;
+                                    $user_id=$user[0]->id;
+                                  }
+                                  $name=$user[0]->name;
+                                  if(isset($last_visit->products)){
+                                    $product=explode(',', $last_visit->products);
+                                    $quantity=explode(',', $last_visit->product_quantity);
+                                    $given_products=json_decode($given_product);  
+                                  }
+                                ?>
+                            @include('includes.monitor_male')
+                          </div>
+                          @else
+                          <div class="tab-pane" id="tab4">
+                            <br>
+                            <h4 class="semi-bold">Step 3 - <span class="light">Monitor Female</span></h4>
                             <br>
                           </div>
-                          <div class="tab-pane" id="tab4">
+                          @endif
+                         <div class="tab-pane" id="tab5">
                             <br>
                             <h4 class="semi-bold">Step 4 - <span class="light">Today's Monitoring Detail</span></h4>
                             <br>
