@@ -541,6 +541,11 @@
                           <div class="tab-pane" id="tab3">
                             <br>
                             <h4 class="semi-bold">Step 3 - <span class="light">Monitor</span></h4>
+                            @if($user_data->gender=='male')
+                              @include('admin.monitor_male')
+                            @else
+                              @include('admin.monitor_female')
+                            @endif
                             <br>
                           </div>
                           <div class="tab-pane" id="tab4">
@@ -663,4 +668,58 @@
         }
       });
     </script>
+    @if($user_data->gender=='male')
+    <script type="text/javascript">
+      $(document).on('click','.clone_it',function (){
+        $('#clone_div').clone().appendTo('#cloned_div');
+      });
+      
+    </script>
+    <script type="text/javascript">
+      $('#payment_recieved,#full_payment').on('keyup',function(){
+         full_payment=$('#full_payment').val();
+        payment_recieved=$('#payment_recieved').val();
+        balance=+full_payment - +payment_recieved;
+        $('#balance').val(balance);
+      });
+    </script>
+    <script type="text/javascript">
+      $('#present_weight').on('keyup',function (){
+        present_weight=$(this).val();
+        present_weight=present_weight*2.205;
+        $('#weight').val(present_weight);
+      })
+    </script>
+    @else
+    <script type="text/javascript">
+      $(document).on('click','.clone_it',function (){
+        $('#clone_div').clone().appendTo('#cloned_div');
+      });
+      $("input").on('keyup',function(){
+        neck=$('#neck').val();
+        chest=$('#chest').val();
+        side_buns=$('#side_buns').val();
+        waist=$('#waist').val();
+        hips=$('#hips').val();
+        thighs=$('#thighs').val();
+        arms=$('#arms').val();
+        lower_waist=$('#lower_waist').val();
+        reduced_incehs=$('#reduced_inches').val();
+        sum= +neck +  +chest;
+        sum= +side_buns + +waist + +sum;
+        sum= +hips + +thighs + +arms + +lower_waist + +sum;
+        reduced= +reduced_incehs - +sum;
+        $('#total_inches').val(sum);
+        $('#reduced').val(reduced);
+      });
+    </script>
+    <script type="text/javascript">
+      $('#payment_recieved,#full_payment').on('keyup',function(){
+         full_payment=$('#full_payment').val();
+        payment_recieved=$('#payment_recieved').val();
+        balance=+full_payment - +payment_recieved;
+        $('#balance').val(balance);
+      });
+    </script>
+    @endif
 @stop
