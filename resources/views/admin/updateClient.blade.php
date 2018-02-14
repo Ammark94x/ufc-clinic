@@ -51,6 +51,12 @@
                             <li data-target="#step2" class="">
                               <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Medical History form</span> </a>
                             </li>
+                            <li data-target="#step3" class="">
+                              <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Monitor</span> </a>
+                            </li>
+                            <li data-target="#step4" class="">
+                              <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Today's Monitoring Detail</span> </a>
+                            </li>
                           </ul>
                           <div class="clearfix"></div>
                         </div>
@@ -531,6 +537,16 @@
                                 </select>
                               </div>
                             </div>
+                          </div>
+                          <div class="tab-pane" id="tab3">
+                            <br>
+                            <h4 class="semi-bold">Step 3 - <span class="light">Monitor</span></h4>
+                            <br>
+                          </div>
+                          <div class="tab-pane" id="tab4">
+                            <br>
+                            <h4 class="semi-bold">Step 4 - <span class="light">Today's Monitoring Detail</span></h4>
+                            <br>
                           </div>
                           <ul class=" wizard wizard-actions">
                             <li class="previous first" style="display:none;"><a href="javascript:;" class="btn">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
