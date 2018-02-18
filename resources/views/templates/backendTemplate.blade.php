@@ -47,7 +47,7 @@
           </ul>
           <!-- BEGIN LOGO -->
           <a href="#">
-            <img src="{{URL('/')}}/backend/assets/img/logo.png"  alt="" data-src="{{URL('/')}}/backend/assets/img/logo.png" data-src-retina="{{URL('/')}}/backend/assets/img/logo2x.png" width="150" height="51" />
+            <img src="{{URL('/')}}/backend/assets/img/logo.png"  alt="" data-src="{{URL('/')}}/backend/assets/img/logo.png"  width="150" height="51" />
           </a>
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">

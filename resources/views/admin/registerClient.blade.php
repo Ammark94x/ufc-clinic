@@ -155,6 +155,9 @@
                                   <input type="number" placeholder="NECK" name="measurment[neck]" class="form-control no-boarder " >
                                 </div>
                                 <div class="col-md-4">
+                                  <input type="number" placeholder="Waist" name="measurment[waist]" class="form-control no-boarder " >
+                                </div>
+                                <div class="col-md-4">
                                   <input type="number" placeholder="CHEST" name="measurment[chest]" class="form-control no-boarder " >
                                 </div>
                                 <div class="col-md-4">
@@ -167,7 +170,7 @@
                                   <input type="number" placeholder="HIPS" name="measurment[hips]" class="form-control no-boarder " >
                                 </div>
                                 <div class="col-md-4">
-                                  <input type="number" placeholder="THIES" name="measurment[thies]" class="form-control no-boarder " >
+                                  <input type="number" placeholder="THIGH" name="measurment[thies]" class="form-control no-boarder " >
                                 </div>  
                                 <div class="col-md-4">
                                   <input type="number" placeholder="ARMS" name="measurment[arms]" class="form-control no-boarder " >
@@ -201,10 +204,11 @@
                               </div>
                               <div class="col-md-4">
                                 <select id="source" style="width:100%" name="history[martial_status]">
-                                  <option value="">Please select Martial Status</option>
+                                  <option value="">Please select Marital Status</option>
                                   <option value="Single">Single</option>
                                   <option value="Married">Married</option>
                                   <option value="Widow">Widow</option>
+                                  <option value="Divorced">Divorced</option>
                                 </select>
                               </div>
                               <div class="col-md-4">
@@ -232,12 +236,18 @@
                               </div>
                               <div class="col-md-4">
                                 <input type="text" placeholder="Delivery of children by" name="history[delivery_children_by]" class="form-control no-boarder " >
-                              </div>
-                              <div class="col-md-4">
-                                <select  style="width:100%" name="history[dnc_miscarriage]">
+                                <select  style="width:100%"   id="miscarriage">
                                   <option value="">Any DNC or miscarriage?</option>
                                   <option value="1">Yes</option>
                                   <option value="0">No</option>
+                                </select>
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" placeholder="Delivery type" name="history[delivery_type]" class="form-control no-boarder " >
+                                <select  style="width:100%"   id="miscarriage_type">
+                                  <option value="">Delivery BY</option>
+                                  <option value="Normal">Normal</option>
+                                  <option value="C-Section">C-Section</option>
                                 </select>
                               </div>
                               <div class="col-md-4">
@@ -248,11 +258,14 @@
                                 </select>
                               </div>
                               <div class="col-md-4">
-                                <select  style="width:100%" name="history[surgery]">
+                                <select  style="width:100%" name="history[surgery]" id="surgery">
                                   <option value="">Any surgery?</option>
                                   <option value="1">Yes</option>
                                   <option value="0">No</option>
                                 </select>
+                              </div>
+                              <div class="col-md-4">
+                                  <input type="text" placeholder="please add surgery reason" name="history[surgery_reason]" class="form-control" id="surgery_reason">
                               </div>
                               <div class="col-md-4">
                                 <select  style="width:100%" name="history[diabetic]">
@@ -319,7 +332,16 @@
                                 </select>
                               </div>
                               <div class="col-md-6">
+                                <input type="text" placeholder="Please description your medication" name="history[medication_reason]" id="medication_reason">
+                              </div>
+                              <div class="col-md-6">
                                 <input type="text" placeholder="Menstrual History" name="history[menstrual_history]" class="form-control no-boarder">
+                                <select   style="width:100%" name="history[menstrual_history]">
+                                  <option value="">Please specify menstrual history</option>
+                                  <option value="Regular">Regular</option>
+                                  <option value="Irregular">Irregular</option>
+                                  <option value="Menopause">Menopause</option>
+                                </select>
                               </div>
                               <div class="col-md-3">
                                 <input type="text" placeholder="Days" name="history[Days]" class="form-control no-boarder " >
@@ -468,6 +490,40 @@
     <script type="text/javascript">
       $(document).on('click','#view_bmr',function (){
         $('.bmr').toggle('slow');
+      });
+    </script>
+
+    {{-- show miscarriage type --}}
+    <script type="text/javascript">
+      $('#miscarriage').change(function (){
+        miscarriage=this.value;
+        if(miscarriage == 1 ){
+          $('#miscarriage_type').show('slow');
+        }else{
+          $('#miscarriage_type').hide('slow');
+        }
+      });
+    </script>
+    {{-- surgery reason --}}
+    <script type="text/javascript">
+      $('#surgery').change(function (){
+        surgery=this.value;
+        if(surgery == 1 ){
+          $('#surgery_reason').show('slow');
+        }else{
+          $('#surgery_reason').hide('slow');
+        }
+      });
+    </script>
+    {{-- medication reason --}}
+    <script type="text/javascript">
+      $('#medication_reason').change(function (){
+        medication_reason=this.value;
+        if(medication_reason == 1 ){
+          $('#medication_reason_reason').show('slow');
+        }else{
+          $('#medication_reason_reason').hide('slow');
+        }
       });
     </script>
 @stop
