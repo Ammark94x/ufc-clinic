@@ -515,6 +515,13 @@
         }
       });
     </script>
+    <script type="text/javascript">
+      $(document).on('ready',function(){
+        if($("#monitor_table").length){
+            $("#monitor_table").DataTable();
+        }
+      });
+    </script>
     @yield('customScripts')
   </body>
 </html>

@@ -45,16 +45,16 @@ class MonitorController extends Controller
 
 
     public function storeMonitor(Request $request){
-
-    	
     	
     	if($_POST['gender'] == 'male'){
+
     		$product=implode(',',$_POST['product']);
 	    	$product_quantity=implode(',', $_POST['product_quantity']);
 	    	$gender=$_POST['gender'];
 	    	monitor::create([
 	            'dov'=>$_POST['dov'],
 	            'package'=>$_POST['package'],
+	            'next_visit' => $_POST['next_visit'],
 	            'present_weight'=>$_POST['present_weight'],
 	            'result'=>$_POST['result'],
 	            'full_payment'=>$_POST['full_payment'],

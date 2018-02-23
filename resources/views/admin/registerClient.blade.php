@@ -193,7 +193,7 @@
                                 <input type="text" placeholder="profession" name="history[profession]" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4" class="form-control no-boarder" placeholder="profession" >
-                                <select id="source" style="width:100%" name="history[disease_status]">
+                                <select id="diesease" style="width:100%" name="history[disease_status]">
                                   <option value="">Do you have any disease?</option>
                                   <option value="1">Yes</option>
                                   <option value="0">No</option>
@@ -235,16 +235,14 @@
                                 </select>
                               </div>
                               <div class="col-md-4">
-                                <input type="text" placeholder="Delivery of children by" name="history[delivery_children_by]" class="form-control no-boarder " >
-                                <select  style="width:100%"   id="miscarriage">
+                                <select  style="width:100%" name="history[dnc]" >{{-- id="miscarriage" --}}
                                   <option value="">Any DNC or miscarriage?</option>
                                   <option value="1">Yes</option>
                                   <option value="0">No</option>
                                 </select>
                               </div>
                               <div class="col-md-4">
-                                <input type="text" placeholder="Delivery type" name="history[delivery_type]" class="form-control no-boarder " >
-                                <select  style="width:100%"   id="miscarriage_type">
+                                <select  style="width:100%"  name="history[delivery_type]"  id="miscarriage_type">
                                   <option value="">Delivery BY</option>
                                   <option value="Normal">Normal</option>
                                   <option value="C-Section">C-Section</option>
@@ -325,7 +323,7 @@
                                 </select>
                               </div>
                               <div class="col-md-6">
-                                <select   style="width:100%" name="history[medication]">
+                                <select   id="medication" style="width:100%" name="history[medication]">
                                   <option value="">Are you currently under any medication?</option>
                                   <option value="1">Yes</option>
                                   <option value="0">No</option>
@@ -335,7 +333,7 @@
                                 <input type="text" placeholder="Please description your medication" name="history[medication_reason]" id="medication_reason">
                               </div>
                               <div class="col-md-6">
-                                <input type="text" placeholder="Menstrual History" name="history[menstrual_history]" class="form-control no-boarder">
+                                
                                 <select   style="width:100%" name="history[menstrual_history]">
                                   <option value="">Please specify menstrual history</option>
                                   <option value="Regular">Regular</option>
@@ -450,7 +448,7 @@
 
     <!-- Input show/hide disease -->
     <script type="text/javascript">
-      $('#source').change(function (){
+      $('#diesease').change(function (){
         disease_status=this.value;
         if(disease_status == 1 ){
           $('#disease').show('slow');
@@ -501,6 +499,18 @@
           $('#miscarriage_type').show('slow');
         }else{
           $('#miscarriage_type').hide('slow');
+        }
+      });
+    </script>
+
+    {{-- show medication --}}
+    <script type="text/javascript">
+      $('#medication').change(function (){
+        medication=this.value;
+        if(medication == 1 ){
+          $('#medication').show('slow');
+        }else{
+          $('#medication').hide('slow');
         }
       });
     </script>

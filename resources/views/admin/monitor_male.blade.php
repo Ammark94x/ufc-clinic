@@ -160,7 +160,7 @@
                         </div> --}}
                       </div>
                       <div class="col-md-6">
-                        <h4>Today's Monitoring Detail</h4>
+                        <h4>Monitoring Detail</h4>
                         <form class="form-no-horizontal-spacing" action="{{route('storeMonitor')}}" id="form-condensed" method="post">
                           {{csrf_field()}}
                         <div class="row form-row">

@@ -15,7 +15,17 @@
                             <td></td>
                           </tr>
                           <tr>
-                            <td style="font-weight: bold;">Present Weight</td>
+                            <td style="font-weight: bold;">Next visit</td>
+                            <td>
+                              @if(isset($last_visit->next_visit))
+                                {{$last_visit->next_visit}}  
+                              @endif
+                            </td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td style="font-weight: bold;">Weight</td>
                             <td>
                               @if(isset($last_visit->present_weight))
                                 {{$last_visit->present_weight}}
@@ -25,7 +35,7 @@
                             <td></td>
                           </tr>
                           <tr>
-                            <td style="font-weight: bold;">Result</td>
+                            <td style="font-weight: bold;">Weight Result</td>
                             <td>
                               @if(isset($last_visit->result))
                                 {{$last_visit->result}}
@@ -115,7 +125,7 @@
                         </div> --}}
                       </div>
                       <div class="col-md-6">
-                        <h4>Today's Monitoring Detail</h4>
+                        <h4>Monitoring Detail</h4>
                         
                         <div class="row form-row">
                           <div class="col-md-4">
@@ -128,11 +138,18 @@
                           </div>   
                           <div class="col-md-4">
                             <label>Present Weight</label>
-                            <input form="male_monitorForm" name="present_weight" type="number" min="1" type="text" id="present_weight" class="form-control" required="">
+                            <input form="male_monitorForm" name="present_weight" type="number" min="1" id="present_weight" class="form-control" required="" placeholder="in Kg">
+                          </div>
+                          @if(isset($last_visit->present_weight))
+                             <input type="hidden" value="{{$last_visit->present_weight}}" id="previous_weight">
+                          @endif 
+                          <div class="col-md-4">
+                            <label>Next Visit</label>
+                            <input form="male_monitorForm" name="next_visit"  type="date" id="present_weight" class="form-control" required="">
                           </div>
                           <div class="col-md-4">
-                            <label>Result</label>
-                            <input form="male_monitorForm" name="result" type="number" min="1" type="text" class="form-control" required="" >
+                            <label id="result_label">Weight Result</label>
+                            <input form="male_monitorForm" id="weight_difference" name="result" type="number" min="1" type="text" class="form-control"  >
                           </div>
                         </div>
                         <div class="row form-row">
@@ -154,7 +171,7 @@
                           </div>
                           <div class="col-md-6">
                               <label>Package</label>
-                              <select name="package" required="">
+                              <select name="package" required="" form="male_monitorForm">
                                 <option >Select package</option>
                                 @for($i=1;$i<=12;$i++)
                                 <option value="{{$i}} month">{{$i}} month</option>
@@ -171,7 +188,7 @@
                           <div id="clone_div">
                             <div class="col-md-6">
                               <label>Products</label>
-                              <select name="product[]" required="">
+                              <select name="product[]"  form="male_monitorForm">
                                 <option value="">Select product</option>
                                 @foreach($products as $key => $val)
                                 <option value="{{$val->id}}">{{$val->item_name}}</option>
@@ -219,7 +236,16 @@
     <script type="text/javascript">
       $('#present_weight').on('keyup',function (){
         present_weight=$(this).val();
-        present_weight=present_weight*2.205;
-        $('#weight').val(present_weight);
+        weight_lbs=present_weight*2.205;
+        $('#weight').val(weight_lbs);
+        /*previous weight*/
+        previous_weight=$('#previous_weight').val();
+        weight_difference=present_weight - previous_weight;
+        if(present_weight > previous_weight){
+            $('#result_label').text('Weight Increased (Kg)');
+        }else{
+            $('#result_label').text('Weight Reduced (Kg)');
+        }
+        $('#weight_difference').val(Math.abs(weight_difference));
       })
     </script>

@@ -1,6 +1,6 @@
 @extends('templates.backendTemplate')
 @section('title')
-  Register Client
+  Monitor Client
 @endsection
 @section('css')
 <link href="{{URL('/')}}/backend/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -63,7 +63,7 @@
                             </li>
                             @endif
                             <li data-target="#step5" class="">
-                              <a href="#tab5" data-toggle="tab"> <span class="step">4</span> <span class="title">Today's Monitoring Detail</span> </a>
+                              <a href="#tab5" data-toggle="tab"> <span class="step">4</span> <span class="title"> Monitoring Detail</span> </a>
                             </li>
                           </ul>
                           <div class="clearfix"></div>
@@ -211,6 +211,10 @@
                                 <input type="number" placeholder="NECK" value="{{json_decode($data[$key]['measurment'])->neck}}" name="measurment[neck]" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
+                                  <label>WAIST</label>
+                                  <input type="number" placeholder="Waist" name="measurment[waist]" class="form-control no-boarder" value="{{json_decode($data[$key]['measurment'])->waist}}" >
+                                </div>
+                              <div class="col-md-4">
                                 <label>CHEST</label>
                                 <input type="number" placeholder="CHEST" value="{{json_decode($data[$key]['measurment'])->chest}}" name="measurment[chest]" class="form-control no-boarder " >
                               </div>
@@ -227,8 +231,8 @@
                                 <input type="number" placeholder="HIPS" value="{{json_decode($data[$key]['measurment'])->hips}}" name="measurment[hips]" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
-                                <label>THIES</label>
-                                <input type="number" placeholder="THIES" value="{{json_decode($data[$key]['measurment'])->thies}}" name="measurment[thies]" class="form-control no-boarder " >
+                                <label>THIGH</label>
+                                <input type="number" placeholder="THIGH" value="{{json_decode($data[$key]['measurment'])->thies}}" name="measurment[thies]" class="form-control no-boarder " >
                               </div>  
                               <div class="col-md-4">
                                 <label>ARMS</label>
@@ -274,8 +278,14 @@
                                 <input type="text" placeholder="Enter disease"  value="{{json_decode($data[$key]['history'])->disease}}" name="history[disease]" class="form-control no-boarder " >
                               </div>
                               <div class="col-md-4">
-                                <label>Martial status</label>
-                                <input type="text" placeholder="Martial status" value="{{json_decode($data[$key]['history'])->martial_status}}" name="history[martial_status]" class="form-control no-boarder " >
+                                <label>Marital status</label>
+                                <select name="history[martial_status]"  id="source" style="width:100%">
+                                  <option value="">Please select Marital Status</option>
+                                  <option value="Single" {{(json_decode($data[$key]['history'])->martial_status == 'Single')?'selected':''}}>Single</option>
+                                  <option value="Married" {{(json_decode($data[$key]['history'])->martial_status == 'Married')?'selected':''}}>Married</option>
+                                  <option value="Widow" {{(json_decode($data[$key]['history'])->martial_status == 'Widow')?'selected':''}}>Widow</option>
+                                  <option value="Divorced" {{(json_decode($data[$key]['history'])->martial_status == 'Divorced')?'selected':''}}>Divorced</option>
+                                </select>
                               </div>
                               <div class="col-md-4">
 
@@ -302,16 +312,20 @@
                               </div>
                               <div class="col-md-4">
                                 <label>Deliver of childer by</label>
-                                <input type="text" placeholder="Delivery of children by"   value="{{json_decode($data[$key]['history'])->delivery_children_by}}" name="history[delivery_children_by]" class="form-control no-boarder " >
+                                 <select  style="width:100%"  name="history[delivery_type]"  id="miscarriage_type">
+                                  <option value="">Delivery BY</option>
+                                  <option value="Normal" {{(json_decode($data[$key]['history'])->delivery_type == 'Normal')?'selected':''}}>Normal</option>
+                                  <option value="C-Section" {{(json_decode($data[$key]['history'])->delivery_type == 'C-Section')?'selected':''}}>C-Section</option>
+                                </select>
                               </div>
                               <div class="col-md-4">
                                 <label>Miscarriage</label>
-                                <select  style="width:100%" name="history[dnc_miscarriage]">
+                                <select  style="width:100%" name="history[dnc]">
                                   <option value="">Any DNC or miscarriage?</option>
-                                  @if(json_decode($data[$key]['history'])->delivery_children_by ==1)
+                                  @if(json_decode($data[$key]['history'])->dnc ==1)
                                   <option value="1" selected="">Yes</option>
                                   <option value="0">No</option>
-                                  @elseif(json_decode($data[$key]['history'])->delivery_children_by == 0)
+                                  @elseif(json_decode($data[$key]['history'])->dnc == 0)
                                   <option value="1">Yes</option>
                                   <option value="0" selected="">No</option>
                                   @else
@@ -468,9 +482,22 @@
                                   @endif
                                 </select>
                               </div>
+                              @if(json_decode($data[$key]['history'])->medication ==1)
+                              <div class="col-md-6">
+                                <label>Medicatin Description</label>
+                                   <div class="col-md-6">
+                                    <input type="text" placeholder="Please description your medication" name="history[medication_reason]" id="medication_reason" value="{{json_decode($data[$key]['history'])->medication_reason}}">
+                              </div>
+                              </div>
+                              @endif
                               <div class="col-md-6">
                                 <label>Menstrual History</label>
-                                <input type="text"  placeholder="Menstrual History"  value="{{json_decode($data[$key]['history'])->menstrual_history}}" name="history[menstrual_history]" class="form-control no-boarder">
+                                <select   style="width:100%" name="history[menstrual_history]">
+                                  <option value="">Please specify menstrual history</option>
+                                  <option value="Regular" {{(json_decode($data[$key]['history'])->menstrual_history =='Regular')?'selected':''}}>Regular</option>
+                                  <option value="Irregular" {{(json_decode($data[$key]['history'])->menstrual_history =='Irregular')?'selected':''}}>Irregular</option>
+                                  <option value="Menopause" {{(json_decode($data[$key]['history'])->menstrual_history =='Menopause')?'selected':''}}>Menopause</option>
+                                </select>
                               </div>
                               <div class="col-md-3">
                                 <label>Days</label>
@@ -575,9 +602,73 @@
                           @endif
                          <div class="tab-pane" id="tab5">
                             <br>
-                            <h4 class="semi-bold">Step 4 - <span class="light">Today's Monitoring Detail</span></h4>
+                            <h4 class="semi-bold">Step 4 - <span class="light">Monitoring Detail</span></h4>
                             <br>
-                          </div>
+                            <div class="row-fluid">
+            <div class="span12">
+              <div class="grid simple ">
+                <div class="grid-title">
+                  <h4>Male <span class="semi-bold">Monitoring</span></h4>
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                    <a href="#grid-config" data-toggle="modal" class="config"></a>
+                    <a href="javascript:;" class="reload"></a>
+                    <a href="javascript:;" class="remove"></a>
+                  </div>
+                </div>
+                <div class="grid-body ">
+                  <table class="table" id="monitor_table">
+                    <thead>
+                      <tr>
+                        <th>Date of visit</th>
+                        <th>Present weight</th>
+                        <th>Result</th>
+                        <th>Weight in LBS</th>
+                        <th>Products</th>
+                        <th>Package</th>
+                        <th>Full Payment</th>
+                        <th>Payment Recieved</th>
+                        <th>Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                      @foreach($user as $key => $val)
+                        @foreach($monitor_user as $keys => $monitor)
+                      <tr class="odd gradeX">
+                        <td>{{$monitor->dov}}</td>
+                        <td>{{$monitor->present_weight}}</td>
+                        <td>{{$monitor->result}}</td>
+                        <td>{{$monitor->weight}}</td>
+                        <td class="center"><?php 
+                          $count=0;
+                          $products_given=explode(',', $monitor->products);
+                          $product_quantity=explode(',', $monitor->product_quantity);
+                          foreach ($products_given as $key => $pro) {
+                            foreach ($products as $key => $value) {
+                              if($value->id == $pro){
+                                echo $value->item_name.' ='.$product_quantity[$count].'';
+                                echo "<br>";   
+                                $count++;
+                              }
+                            }
+                             
+                             
+                          }
+                        ?></td>
+                        <td class="center">{{$monitor->package}}</td>
+                        <td class="center">{{$monitor->full_payment}}</td>
+                        <td>{{$monitor->payment_recieved}}</td>
+                        <td class="center">{{$monitor->balance}}</td>
+                      </tr>
+                      @endforeach
+                        @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div> 
                           <ul class=" wizard wizard-actions">
                             <li class="previous first" style="display:none;"><a href="javascript:;" class="btn">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
                             <li class="previous"><a href="javascript:;" class="btn">&nbsp;&nbsp;Previous&nbsp;&nbsp;</a></li>
