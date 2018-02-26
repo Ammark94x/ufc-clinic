@@ -177,8 +177,13 @@
                             <input name="present_weight" type="number" min="1" type="text" id="present_weight" class="form-control" required="">
                           </div>
                           <div class="col-md-4">
+                            <label>Next Visit</label>
+                            <input   name="next_visit"  type="date" id="present_weight" class="form-control" required="">
+                          </div>
+
+                          <div class="col-md-4">
                             <label>Result</label>
-                            <input name="result" type="number" min="1" type="text" class="form-control" required="" >
+                            <input name="result" type="number" min="1" type="text" class="form-control"  >
                           </div>
                         </div>
                         <div class="row form-row">

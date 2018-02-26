@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\monitor;
 use App\User;
+use App\UserMeta;
 use App\storekeeper;
+use App\NextVisits;
 use App\product;
 	
 class MonitorController extends Controller
@@ -45,12 +47,15 @@ class MonitorController extends Controller
 
 
     public function storeMonitor(Request $request){
+    	$general_info=$_POST;
     	
+    	$this->update_Client($_POST['data'],$_POST['history'],$_POST['measurment'],$_POST['user_id'],$general_info);
     	if($_POST['gender'] == 'male'){
 
     		$product=implode(',',$_POST['product']);
 	    	$product_quantity=implode(',', $_POST['product_quantity']);
 	    	$gender=$_POST['gender'];
+	    	
 	    	monitor::create([
 	            'dov'=>$_POST['dov'],
 	            'package'=>$_POST['package'],
@@ -66,6 +71,10 @@ class MonitorController extends Controller
 	            'products'=>$product,
 	            'product_quantity'=>$product_quantity
 	        ]);
+	         NextVisits::create([
+            'user_id'=>$_POST['user_id'],
+            'date'=>$_POST['next_visit'],
+        ]);
     	}else{
     		$product=implode(',',$_POST['product']);
 	    	$product_quantity=implode(',', $_POST['product_quantity']);
@@ -90,8 +99,38 @@ class MonitorController extends Controller
 	            'payment_recieved'=>$_POST['payment_recieved'],
 	            'balance'=>$_POST['balance']
 	        ]);
-
+	    	 NextVisits::create([
+            'user_id'=>$_POST['user_id'],
+            'date'=>$_POST['next_visit'],
+        ]);
     	}
     	return redirect()->back()->with('status','Successfully added !');
+    }
+
+
+    public function update_Client($data,$history,$measurment,$user_id,$general_info){
+    	$data=json_encode($data);
+        $history = json_encode($history);
+        $measurment = json_encode($measurment);
+        /*update usermeta table*/
+        UserMeta::where('user_id',$user_id)->update([
+            'data'=>$data,
+            'history'=>$history,
+            'measurment'=>$measurment
+        ]);
+
+        /*update user table*/
+        User::where('id',$user_id)->update([
+            'name' =>  $general_info['name'],
+            'f_name' =>  $general_info['f_name'],
+            'address' =>  $general_info['address'],
+            'res_phone' =>  $general_info['res_phone'],
+            'office_phone' =>  $general_info['office_phone'],
+            'mobile' =>  $general_info['mobile'],
+            'age' =>  $general_info['age'],
+            'location' => $general_info['location'],
+            'email' =>  $general_info['email'],
+            'gender' => $general_info['gender']
+        ]);
     }
 }

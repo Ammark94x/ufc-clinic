@@ -1,4 +1,5 @@
-<div class="row column-seperation">
+<div class="row column-seperation" style="background: white">
+
                       <div class="col-md-6">
                         <h4>Last visit detail</h4>
                         <?php if(isset($last_visit->dov)&& !empty($last_visit->dov)){?>
@@ -149,7 +150,7 @@
                           </div>
                           <div class="col-md-4">
                             <label id="result_label">Weight Result</label>
-                            <input form="male_monitorForm" id="weight_difference" name="result" type="number" min="1" type="text" class="form-control"  >
+                            <input form="male_monitorForm"  readonly="" id="weight_difference" name="result" type="number" min="1" type="text" class="form-control"  >
                           </div>
                         </div>
                         <div class="row form-row">
@@ -157,7 +158,7 @@
                             <label>Weight in LBS</label>
                             <input form="male_monitorForm" name="weight" type="number" id="weight" min="1" type="text" class="form-control" required="" readonly="">
                           </div>
-                          <div class="col-md-4">
+                          {{-- <div class="col-md-4">
                             <label>Full Payment</label>
                             <input form="male_monitorForm" name="full_payment" type="number"  id="full_payment" type="text" class="form-control"  >
                           </div>
@@ -168,7 +169,7 @@
                           <div class="col-md-4">
                             <label>Balance</label>
                             <input form="male_monitorForm" name="balance" type="number" id="balance" type="text" class="form-control" >
-                          </div>
+                          </div> --}}
                           <div class="col-md-6">
                               <label>Package</label>
                               <select name="package" required="" form="male_monitorForm">
