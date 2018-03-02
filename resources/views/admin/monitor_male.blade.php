@@ -178,7 +178,7 @@
                           </div>
                           <div class="col-md-4">
                             <label>Next Visit</label>
-                            <input   name="next_visit"  type="date" id="present_weight" class="form-control" required="">
+                            <input   name="next_visit"  type="date"  class="form-control" required="">
                           </div>
 
                           <div class="col-md-4">

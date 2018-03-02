@@ -598,6 +598,20 @@
                             <br>
                             <h4 class="semi-bold">Step 3 - <span class="light">Monitor Female</span></h4>
                             <br>
+                            {{-- Monitor Female --}}
+                            <?php 
+                                  if(isset($user) && !empty($user)){
+                                    $gender=$user[0]->gender;
+                                    $user_id=$user[0]->id;
+                                  }
+                                  $name=$user[0]->name;
+                                  if(isset($last_visit->products)){
+                                    $product=explode(',', $last_visit->products);
+                                    $quantity=explode(',', $last_visit->product_quantity);
+                                    $given_products=json_decode($given_product);  
+                                  }
+                                ?>
+                            @include('includes.monitor_female')
                           </div>
                           @endif
                          <div class="tab-pane" id="tab5">
@@ -685,11 +699,15 @@
                               </div>
           </div> 
                           <ul class=" wizard wizard-actions">
-                            <li class="previous first" style="display:none;"><a href="javascript:;" class="btn">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
+                            {{-- <li class="previous first" style="display:none;"><a href="javascript:;" class="btn">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
                             <li class="previous"><a href="javascript:;" class="btn">&nbsp;&nbsp;Previous&nbsp;&nbsp;</a></li>
                             <li class="next last" style="display:none;"><a href="javascript:;" class="btn btn-primary">&nbsp;&nbsp;Last&nbsp;&nbsp;</a></li>
-                            <li class="next"><a href="javascript:;" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;</a></li>
-                            <li class="next"><input type="submit" class="btn btn-success" value="Submit"></li>
+                            <li class="next"><a href="javascript:;" class="btn btn-primary">&nbsp;&nbsp;Next&nbsp;&nbsp;</a></li> --}}
+                            <div class="pull-right" style="margin-top: 10px">
+                              <input form="male_monitorForm" type="submit" class="btn btn-danger btn-cons"><i class="icon-ok"></i>
+                                <a class="btn btn-white btn-cons" href="{{route('clientList')}}">Cancel</a>
+                              </div>
+                            {{-- <li class="next"><input type="submit" class="btn btn-success" value="Submit"></li> --}}
                           </ul>
                         </div>
                       </div>

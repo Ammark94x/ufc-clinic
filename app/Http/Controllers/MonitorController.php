@@ -45,17 +45,17 @@ class MonitorController extends Controller
         }
     }
 
-
     public function storeMonitor(Request $request){
     	$general_info=$_POST;
-    	
-    	$this->update_Client($_POST['data'],$_POST['history'],$_POST['measurment'],$_POST['user_id'],$general_info);
-    	if($_POST['gender'] == 'male'){
+        if (isset($_POST['data'])) {
+    	   $this->update_Client($_POST['data'],$_POST['history'],$_POST['measurment'],$_POST['user_id'],$general_info);
+        }
+    	if($_POST['gender'] == 'male' && $_POST['payment_recieved'] != ''){
 
     		$product=implode(',',$_POST['product']);
 	    	$product_quantity=implode(',', $_POST['product_quantity']);
 	    	$gender=$_POST['gender'];
-	    	
+
 	    	monitor::create([
 	            'dov'=>$_POST['dov'],
 	            'package'=>$_POST['package'],
@@ -75,14 +75,17 @@ class MonitorController extends Controller
             'user_id'=>$_POST['user_id'],
             'date'=>$_POST['next_visit'],
         ]);
-    	}else{
-    		$product=implode(',',$_POST['product']);
+    	}elseif($_POST['gender'] == 'female' && $_POST['payment_recieved'] != ''){
+    		$product=implode(',',$_POST['product']);  
 	    	$product_quantity=implode(',', $_POST['product_quantity']);
 	    	$gender=$_POST['gender'];
 	    	monitor::create([
 	            'dov'=>$_POST['dov'],
 	            'package'=>$_POST['package'],
 	            'neck'=>$_POST['neck'],
+                'next_visit' => $_POST['next_visit'],
+                'present_weight'=>$_POST['present_weight'],
+                'result'=>$_POST['result'],
 	            'chest'=>$_POST['chest'],
 	            'gender'=>$_POST['gender'],
 	            'user_id'=>$_POST['user_id'],
@@ -112,6 +115,8 @@ class MonitorController extends Controller
     	$data=json_encode($data);
         $history = json_encode($history);
         $measurment = json_encode($measurment);
+
+
         /*update usermeta table*/
         UserMeta::where('user_id',$user_id)->update([
             'data'=>$data,

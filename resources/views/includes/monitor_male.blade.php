@@ -139,14 +139,14 @@
                           </div>   
                           <div class="col-md-4">
                             <label>Present Weight</label>
-                            <input form="male_monitorForm" name="present_weight" type="number" min="1" id="present_weight" class="form-control" required="" placeholder="in Kg">
+                            <input form="male_monitorForm" name="present_weight" type="number" min="1" id="present_weight" class="form-control"  placeholder="in Kg">
                           </div>
                           @if(isset($last_visit->present_weight))
                              <input type="hidden" value="{{$last_visit->present_weight}}" id="previous_weight">
                           @endif 
                           <div class="col-md-4">
                             <label>Next Visit</label>
-                            <input form="male_monitorForm" name="next_visit"  type="date" id="present_weight" class="form-control" required="">
+                            <input form="male_monitorForm" name="next_visit"  type="date" id="present_weight" class="form-control" >
                           </div>
                           <div class="col-md-4">
                             <label id="result_label">Weight Result</label>
@@ -156,7 +156,7 @@
                         <div class="row form-row">
                           <div class="col-md-4">
                             <label>Weight in LBS</label>
-                            <input form="male_monitorForm" name="weight" type="number" id="weight" min="1" type="text" class="form-control" required="" readonly="">
+                            <input form="male_monitorForm" name="weight" type="number" id="weight" min="1" type="text" class="form-control"  readonly="">
                           </div>
                           {{-- <div class="col-md-4">
                             <label>Full Payment</label>
@@ -172,8 +172,8 @@
                           </div> --}}
                           <div class="col-md-6">
                               <label>Package</label>
-                              <select name="package" required="" form="male_monitorForm">
-                                <option >Select package</option>
+                              <select name="package"  form="male_monitorForm">
+                                <option value="">Select package</option>
                                 @for($i=1;$i<=12;$i++)
                                 <option value="{{$i}} month">{{$i}} month</option>
                                 @endfor
@@ -198,7 +198,7 @@
                             </div>
                             <div class="col-md-4 " >
                               <label>Quantity</label>
-                              <input form="male_monitorForm" name="product_quantity[]" id="form3PostalCode" type="text" class="form-control" required="" >
+                              <input form="male_monitorForm" name="product_quantity[]" id="form3PostalCode" type="text" class="form-control"  >
                             </div>
                           </div>
                           <div  id="cloned_div" >
@@ -214,10 +214,11 @@
                           </p>
                         </div> --}}
                       </div>
-                      <div class="pull-right" style="margin-top: 10px">
+                      {{-- submit button for monitor --}}
+                      {{-- <div class="pull-right" style="margin-top: 10px">
                       <input form="male_monitorForm" type="submit" class="btn btn-danger btn-cons"><i class="icon-ok"></i>
                         <a class="btn btn-white btn-cons" href="{{route('clientList')}}">Cancel</a>
-                      </div>
+                      </div> --}}
                     </div>
                     <script src="{{url('/backend')}}/assets/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
                     <script type="text/javascript">

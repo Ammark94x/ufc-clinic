@@ -148,6 +148,18 @@
                              ?>
                             <label>Date of visit</label>
                             <input name="dov" id="dov" type="text" class="form-control" value="{{$date}}">
+                          </div>
+                          <div class="col-md-4">
+                            <label>Next Visit</label>
+                            <input   name="next_visit"  type="date"  class="form-control" required="">
+                          </div>
+                          <div class="col-md-4">
+                            <label>Present Weight</label>
+                            <input name="present_weight" type="number" min="1" type="text" id="present_weight" class="form-control" required="">
+                          </div>
+                          <div class="col-md-4">
+                            <label>Result</label>
+                            <input name="result" type="number" min="1" type="text" class="form-control"  >
                           </div>   
                           <div class="col-md-2">
                             <label>Neck</label>
@@ -212,8 +224,7 @@
                               </select> 
                             </div>
                           {{-- hidden fields for the databale --}}
-                          <input type="hidden" name="gender" value="{{$gender}}">
-                          <input type="hidden" name="user_id" value="{{$user_id}}">
+                          
 
                           <input type="hidden" name="gender" value="{{$gender}}">
                           <input type="hidden" name="user_id" value="{{$user_id}}">

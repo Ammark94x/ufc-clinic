@@ -508,9 +508,9 @@
       $('#medication').change(function (){
         medication=this.value;
         if(medication == 1 ){
-          $('#medication').show('slow');
+          $('#medication_reason').show('slow');
         }else{
-          $('#medication').hide('slow');
+          $('#medication_reason').hide('slow');
         }
       });
     </script>
@@ -526,7 +526,7 @@
       });
     </script>
     {{-- medication reason --}}
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
       $('#medication_reason').change(function (){
         medication_reason=this.value;
         if(medication_reason == 1 ){
@@ -535,5 +535,5 @@
           $('#medication_reason_reason').hide('slow');
         }
       });
-    </script>
+    </script> --}}
 @stop
